@@ -1,8 +1,8 @@
 #include "_Scene.h"
 
-auto lastTime = chrono::steady_clock::now(); // initiate timer
+auto lastTime = chrono::steady_clock::now(); // Initiate Timer
 
-_Scene::_Scene() {}     //constructor
+_Scene::_Scene() {}     // Constructor
 
 _Scene:: ~_Scene()
 {
@@ -11,18 +11,18 @@ _Scene:: ~_Scene()
  
 GLint _Scene::initGL()
 {
-    glewInit();                     //initialize glew
-    glClearColor(0.0,0.0,0.0,1.0);  // background color
-    glClearDepth(1.0);              // clear depth values
+    glewInit();                     // Initialize glew
+    glClearColor(0.0,0.0,0.0,1.0);  // Background color
+    glClearDepth(1.0);              // Clear depth values
 
     glEnable(GL_DEPTH_TEST);        // Enable depth Test
-    glDepthFunc(GL_LEQUAL);         // TYpe of depth to be performed
+    glDepthFunc(GL_LEQUAL);         // Type of depth to be performed
 
-    glEnable(GL_LIGHTING);          // Enagle light settings
+    glEnable(GL_LIGHTING);          // Enable light settings
     glEnable(GL_LIGHT0);            // Enable light channel 0
 
     glEnable(GL_TEXTURE_2D);
-    glEnable(GL_COLOR_MATERIAL);    //  Enable colors
+    glEnable(GL_COLOR_MATERIAL);    // Enable Color
     myMdl->initModel("images/skin.jpg");
 
     mySky->initSkyBox();
