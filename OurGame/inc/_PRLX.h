@@ -1,7 +1,7 @@
 #pragma once
 
-#include<_Common.h>
-#include<_TxtLoader.h>
+#include <_Common.h>
+#include <_TxtLoader.h>
 
 class _PRLX
 {
