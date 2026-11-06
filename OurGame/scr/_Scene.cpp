@@ -38,21 +38,19 @@ GLint _Scene::initGL()
 
     myPlayer->initPlayer("models/Soldier/Idle.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 0);
     myPlayer->initPlayer("models/Soldier/Running.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 1);
-    myPlayer->initPlayer("models/Soldier/Jumping.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 2);
-    myPlayer->initPlayer("models/Soldier/Crouching.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 3);
-    myPlayer->initPlayer("models/Soldier/Cartwheel.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 4);
+    myPlayer->initPlayer("models/Soldier/Jump.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 2);
+    myPlayer->initPlayer("models/Soldier/Crouch.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 3);
+    myPlayer->initPlayer("models/Soldier/Cartwheeling.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 4);
     
-    /*
     for (int i = 0; i < numEnms; i++)
     {
-        myEnms[i].initEnms("models/Zombie/Zombie Idle.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 0);
-        myEnms[i].initEnms("models/Zombie/Zombie Running.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 1);
-        myEnms[i].initEnms("models/Zombie/Zombie Attack.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 2);
-        myEnms[i].initEnms("models/Zombie/Zombie Left Strafe.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 3);
-        myEnms[i].initEnms("models/Zombie/Zombie Right Strafe.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 4);
-        myEnms[i].initEnms("models/Zombie/Zombie Death.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 5);
+        myEnms[i].initEnms("models/Zombie/Zombie_Idle.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 0);
+        myEnms[i].initEnms("models/Zombie/Zombie_Running.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 1);
+        myEnms[i].initEnms("models/Zombie/Zombie_Attack.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 2);
+        myEnms[i].initEnms("models/Zombie/Zombie_Left_Strafe.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 3);
+        myEnms[i].initEnms("models/Zombie/Zombie_Right_Strafe.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 4);
+        myEnms[i].initEnms("models/Zombie/Zombie_Die.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 5);
     }
-    */
     
     myLight->setLight(GL_LIGHT0);
 
@@ -96,14 +94,15 @@ void _Scene::drawScene()
     myPlayer->drawPlayer(deltaT);
     glPopMatrix();                      // end grouping matrix
 
-    /*
+    
     for (int i = 0; i < numEnms; i++)
     {
         glPushMatrix();
+        glTranslatef((i * 1.0), 0.0, 0.0);
         myEnms[i].drawEnms(deltaT);
         glPopMatrix();
     }
-    */
+    
 }
 
 int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
