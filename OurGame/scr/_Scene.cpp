@@ -1,13 +1,13 @@
 #include "_Scene.h"
 
-auto lastTime = chrono::steady_clock::now(); // Initiate Timer
+auto lastTime = chrono::steady_clock::now(); // Initiate timer
 
 _Scene::_Scene() {}     // Constructor
 
-_Scene:: ~_Scene()
+_Scene:: ~_Scene()      // Destructor
 {
     delete myMdl;
-}   //destructor
+}   
  
 GLint _Scene::initGL()
 {
@@ -22,8 +22,7 @@ GLint _Scene::initGL()
     glEnable(GL_LIGHT0);            // Enable light channel 0
 
     glEnable(GL_TEXTURE_2D);
-    glEnable(GL_COLOR_MATERIAL);    // Enable Color
-    myMdl->initModel("images/skin.jpg");
+    glEnable(GL_COLOR_MATERIAL);    // Enable color
 
     mySky->initSkyBox();
 
@@ -61,14 +60,14 @@ float _Scene::deltaT = 0;
 
 void _Scene::reSize(GLint width, GLint height)
 {
-    float aspectRatio = (GLfloat)width / (GLfloat) height; //to maintain graphics in size
+    float aspectRatio = (GLfloat)width / (GLfloat) height; // To maintain graphics in size
 
-    glViewport(0, 0, width, height); // set viewing window
-    glMatrixMode(GL_PROJECTION);     // set correct projection in the scene
-    glLoadIdentity();                // reset matrices
+    glViewport(0, 0, width, height); // Set viewing window
+    glMatrixMode(GL_PROJECTION);     // Set correct projection in the scene
+    glLoadIdentity();                // Reset matrices
 
-    gluPerspective(45, aspectRatio, 0.1, 100.0);//settings of the projection
-    glMatrixMode(GL_MODELVIEW);     // set up model matrix and view matrix
+    gluPerspective(45, aspectRatio, 0.1, 100.0);    // Settings of the projection
+    glMatrixMode(GL_MODELVIEW);                     // Set up model matrix and view matrix
     glLoadIdentity();
 
     dimX = GetSystemMetrics(SM_CXSCREEN);
@@ -77,7 +76,7 @@ void _Scene::reSize(GLint width, GLint height)
 
 void _Scene::drawScene()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear color and depth
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth
     glLoadIdentity();
 
     auto currentTime = chrono::steady_clock::now();
@@ -89,10 +88,10 @@ void _Scene::drawScene()
     mySky->drawSkyBox();
     myLight->moveLight(deltaT);
 
-    glPushMatrix();                     // start grouping matrix
+    glPushMatrix();                 // Start grouping matrix
     glTranslatef(0.0, -1.0, 0.0);
     myPlayer->drawPlayer(deltaT);
-    glPopMatrix();                      // end grouping matrix
+    glPopMatrix();                  // End grouping matrix
 
     
     for (int i = 0; i < numEnms; i++)
@@ -138,5 +137,3 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     
     return 0;
 }
-
-// THIS IS A TEXT COMMENT FOR GITHUB

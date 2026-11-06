@@ -43,6 +43,8 @@ void _Anim3D::modelInit(const char* fileName, GLuint ID) {
         return;
     }
 
+    cout << "Model Loaded" << endl;
+
     // --- Generate VBOs for each Mesh ---
     meshVBOs.resize(scene->mNumMeshes);
     for (unsigned int m = 0; m < scene->mNumMeshes; ++m) {
