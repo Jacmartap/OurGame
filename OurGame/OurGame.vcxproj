@@ -77,12 +77,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\include;C:\Users\Kassidy\Documents\GitHub\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
@@ -99,12 +99,12 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\include;C:\Users\Kassidy\Documents\GitHub\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
@@ -119,12 +119,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\include;C:\Users\Kassidy\Documents\GitHub\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
@@ -141,12 +141,12 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\include;C:\Users\Kassidy\Documents\GitHub\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\OurGame\OurGame\inc;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
