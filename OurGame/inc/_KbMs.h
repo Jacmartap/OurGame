@@ -17,7 +17,7 @@ public:
 	void keyPressed(_SkyBox*);
 	void keyPressed(_Camera*);
 	void keyPressed(_PRLX*);
-	void keyPressed(_Player*);
+	void keyPressed(_Player*, float&, float&);
 	void keyUp();
 
 	void mouseEventDown(_Model*, double, double);

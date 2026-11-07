@@ -136,24 +136,28 @@ void _KbMs::keyPressed(_PRLX* prlx)
 
 }
 
-void _KbMs::keyPressed(_Player* mdl)
+void _KbMs::keyPressed(_Player* mdl, float& curPosX, float& curPosZ)
 {
 	switch (wparam)
 	{
 	case VK_LEFT:
 		mdl->ActionTrigger = mdl->IDLE;
+		curPosX -= 0.2;
 		break;
 
 	case VK_RIGHT:
 		mdl->ActionTrigger = mdl->RUN;
+		curPosX += 0.2;
 		break;
 
 	case VK_UP:
 		mdl->ActionTrigger = mdl->JUMP;
+		curPosZ -= 0.2;
 		break;
 
 	case VK_DOWN:
 		mdl->ActionTrigger = mdl->CROUCH;
+		curPosZ += 0.2;
 		break;
 
 	case VK_SPACE:

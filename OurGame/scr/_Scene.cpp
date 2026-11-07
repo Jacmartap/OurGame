@@ -41,6 +41,7 @@ GLint _Scene::initGL()
     myPlayer->initPlayer("models/Soldier/Crouch.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 3);
     myPlayer->initPlayer("models/Soldier/Cartwheeling.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 4);
     
+    /*                                     Ignoring the zombies just for now
     for (int i = 0; i < numEnms; i++)
     {
         myEnms[i].initEnms("models/Zombie/Zombie_Idle.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 0);
@@ -50,6 +51,7 @@ GLint _Scene::initGL()
         myEnms[i].initEnms("models/Zombie/Zombie_Right_Strafe.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 4);
         myEnms[i].initEnms("models/Zombie/Zombie_Die.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 5);
     }
+    */
     
     myLight->setLight(GL_LIGHT0);
 
@@ -89,11 +91,11 @@ void _Scene::drawScene()
     myLight->moveLight(deltaT);
 
     glPushMatrix();                 // Start grouping matrix
-    glTranslatef(0.0, -1.0, 0.0);
+    glTranslatef(plyrPosX, -1.0, plyrPosZ);
     myPlayer->drawPlayer(deltaT);
     glPopMatrix();                  // End grouping matrix
 
-    
+    /*                                     Ignoring the zombies just for now
     for (int i = 0; i < numEnms; i++)
     {
         glPushMatrix();
@@ -101,7 +103,7 @@ void _Scene::drawScene()
         myEnms[i].drawEnms(deltaT);
         glPopMatrix();
     }
-    
+    */
 }
 
 int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -111,7 +113,7 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_KEYDOWN:
         myKbMs->wparam = wParam;
         myKbMs->keyPressed(myCam);
-        myKbMs->keyPressed(myPlayer);
+        myKbMs->keyPressed(myPlayer, plyrPosX, plyrPosZ);
         break;
     
     case WM_KEYUP: break;
