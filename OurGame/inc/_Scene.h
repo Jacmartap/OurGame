@@ -30,9 +30,6 @@ class _Scene
        _LightSetup* myLight = new _LightSetup();
        _Player* myPlayer = new _Player(); // With Multiple Actions
 
-       float plyrPosX = 0;
-       float plyrPosZ = 0;
-
        _Enemy myEnms[numEnms];
 
        float dimX;
@@ -48,6 +45,8 @@ class _Scene
            LPARAM lParam);		// Additional Message Information
 
     static float deltaT;
+
+    float timer = 0;
 
 private:
          

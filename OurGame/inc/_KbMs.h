@@ -17,7 +17,7 @@ public:
 	void keyPressed(_SkyBox*);
 	void keyPressed(_Camera*);
 	void keyPressed(_PRLX*);
-	void keyPressed(_Player*, float&, float&);
+	void keyPressed(_Player*, float);   // Altered for movement - Jacob
 	void keyUp();
 
 	void mouseEventDown(_Model*, double, double);
@@ -35,6 +35,11 @@ public:
 	bool isMsRotate;
 
 	WPARAM wparam;
+
+	bool up = false;		// New booleans to register movement - Jacob
+	bool down = false;
+	bool left = false;
+	bool right = false;
 
 private:
 

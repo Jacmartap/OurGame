@@ -19,6 +19,7 @@ public:
 	enum {IDLE, RUN, JUMP, CROUCH, CARTWHEEL};
 
 	vec3 pos;
+	vec3 rot;   // Tracks rotation - Jacob
 	vec3 scale;
 	bool isLive = true;
 };

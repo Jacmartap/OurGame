@@ -136,37 +136,41 @@ void _KbMs::keyPressed(_PRLX* prlx)
 
 }
 
-void _KbMs::keyPressed(_Player* mdl, float& curPosX, float& curPosZ)
+void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to dictate the direction of movement - Jacob
 {
-	switch (wparam)
+	float speed = 3.5;
+
+	if (up)
 	{
-	case VK_LEFT:
-		mdl->ActionTrigger = mdl->IDLE;
-		curPosX -= 0.2;
-		break;
-
-	case VK_RIGHT:
 		mdl->ActionTrigger = mdl->RUN;
-		curPosX += 0.2;
-		break;
+		mdl->pos.z -= deltaT * speed;
+		mdl->rot.y = 180.0;
+	}
 
-	case VK_UP:
-		mdl->ActionTrigger = mdl->JUMP;
-		curPosZ -= 0.2;
-		break;
+	if (right)
+	{
+		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.x += deltaT * speed;
+		mdl->rot.y = 90.0;
+	}
 
-	case VK_DOWN:
-		mdl->ActionTrigger = mdl->CROUCH;
-		curPosZ += 0.2;
-		break;
+	if (down)
+	{
+		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.z += deltaT * speed;
+		mdl->rot.y = 0.0;
+	}
 
-	case VK_SPACE:
-		mdl->ActionTrigger = mdl->CARTWHEEL;
-		break;
-
-	default:
-		break;
-
+	if (left)
+	{
+		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.x -= deltaT * speed;
+		mdl->rot.y = -90.0;
+	}
+	
+	if (!up && !down && !left && !right)
+	{
+		mdl->ActionTrigger = mdl->IDLE;
 	}
 }
 

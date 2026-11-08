@@ -41,7 +41,7 @@ GLint _Scene::initGL()
     myPlayer->initPlayer("models/Soldier/Crouch.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 3);
     myPlayer->initPlayer("models/Soldier/Cartwheeling.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 4);
     
-    /*                                     Ignoring the zombies just for now
+    /*                                     Ignoring the zombies just for now - Jacob
     for (int i = 0; i < numEnms; i++)
     {
         myEnms[i].initEnms("models/Zombie/Zombie_Idle.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 0);
@@ -90,12 +90,15 @@ void _Scene::drawScene()
     mySky->drawSkyBox();
     myLight->moveLight(deltaT);
 
-    glPushMatrix();                 // Start grouping matrix
-    glTranslatef(plyrPosX, -1.0, plyrPosZ);
-    myPlayer->drawPlayer(deltaT);
-    glPopMatrix();                  // End grouping matrix
+    myKbMs->keyPressed(myPlayer, deltaT);   // To activate movement - Jacob
 
-    /*                                     Ignoring the zombies just for now
+    glPushMatrix();                         // Start grouping matrix
+    myPlayer->drawPlayer(deltaT);
+    glPopMatrix();                          // End grouping matrix
+
+    
+    
+    /*                                     Ignoring the zombies just for now - Jacob
     for (int i = 0; i < numEnms; i++)
     {
         glPushMatrix();
@@ -112,11 +115,24 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_KEYDOWN:
         myKbMs->wparam = wParam;
+
+        if (myKbMs->wparam == VK_UP) myKbMs->up = true;          // To detect key presses - Jacob
+        if (myKbMs->wparam == VK_DOWN) myKbMs->down = true;
+        if (myKbMs->wparam == VK_LEFT) myKbMs->left = true;
+        if (myKbMs->wparam == VK_RIGHT) myKbMs->right = true;
+
         myKbMs->keyPressed(myCam);
-        myKbMs->keyPressed(myPlayer, plyrPosX, plyrPosZ);
         break;
     
-    case WM_KEYUP: break;
+    case WM_KEYUP:
+        myKbMs->wparam = wParam;
+
+        if (myKbMs->wparam == VK_UP) myKbMs->up = false;         // To detect key letting go - Jacob
+        if (myKbMs->wparam == VK_DOWN) myKbMs->down = false;
+        if (myKbMs->wparam == VK_LEFT) myKbMs->left = false;
+        if (myKbMs->wparam == VK_RIGHT) myKbMs->right = false;
+        
+        break;
 
     case WM_LBUTTONDOWN:
     case WM_RBUTTONDOWN: 
