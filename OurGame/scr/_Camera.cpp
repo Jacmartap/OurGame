@@ -7,8 +7,8 @@ _Camera::~_Camera() {};
 void _Camera::camInit()
 {
 	eye.x = 0;
-	eye.y = 0;
-	eye.z = 10;
+	eye.y = 2;   // Shifted values a bit - Jacob
+	eye.z = 6;   //
 	
 	des.x = 0;
 	des.y = 0;
@@ -63,16 +63,16 @@ void _Camera::rotateUD()
 
 }
 
-void _Camera::MvFdBd(int dir)
+void _Camera::MvFdBd(int dir, float deltaT)
 {
-	eye.z += dir * step;
-	des.z += dir * step;
+	eye.z += dir * deltaT;
+	des.z += dir * deltaT;
 }
 
-void _Camera::MvLtRt(int dir)
+void _Camera::MvLtRt(int dir, float deltaT)
 {
-	eye.x += dir * step;
-	des.x += dir * step;
+	eye.x += dir * deltaT;
+	des.x += dir * deltaT;
 }
 
 void _Camera::SetupCam()

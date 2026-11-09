@@ -18,6 +18,7 @@ public:
 	void keyPressed(_Camera*);
 	void keyPressed(_PRLX*);
 	void keyPressed(_Player*, float);   // Altered for movement - Jacob
+	void keyPressed(_Camera* cm, float deltaT);   // Also Altered for movement - Jacob
 	void keyUp();
 
 	void mouseEventDown(_Model*, double, double);

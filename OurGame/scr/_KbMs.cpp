@@ -59,7 +59,8 @@ void _KbMs::keyPressed(_SkyBox* sky)
 		break;
 	}
 }
-void _KbMs::keyPressed(_Camera* cm)
+
+/*void _KbMs::keyPressed(_Camera* cm)     // Ignoring this variant of the camera rotation for now - Jacob
 {
 	switch (wparam)
 	{
@@ -104,7 +105,7 @@ void _KbMs::keyPressed(_Camera* cm)
 		break;
 	}
 
-}
+}*/
 
 void _KbMs::keyPressed(_PRLX* prlx)
 {
@@ -174,6 +175,31 @@ void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to
 	}
 }
 
+void _KbMs::keyPressed(_Camera* cm, float deltaT)   // Same as above but for camera - Jacob
+{
+	float speed = 3.5;
+
+	if (up)
+	{
+		cm->MvFdBd(-1, deltaT * speed);
+	}
+
+	if (right)
+	{
+		cm->MvLtRt(1, deltaT * speed);
+	}
+
+	if (down)
+	{
+		cm->MvFdBd(1, deltaT * speed);
+	}
+
+	if (left)
+	{
+		cm->MvLtRt(-1, deltaT * speed);
+	}
+}
+
 void _KbMs::keyUp(){
 	switch (wparam)
 	{
@@ -203,6 +229,7 @@ void _KbMs::mouseEventDown(_Model* mdl, double x, double y)
 		break;
 	}
 }
+
 void _KbMs::mouseEventUp()
 {
 

@@ -22,8 +22,8 @@ public:
 
 	void rotateXY();
 	void rotateUD();
-	void MvFdBd(int dir);
-	void MvLtRt(int dir);
+	void MvFdBd(int dir, float deltaT);
+	void MvLtRt(int dir, float deltaT);
 
 	void SetupCam();
 

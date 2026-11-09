@@ -53,7 +53,7 @@ GLint _Scene::initGL()
     }
     */
     
-    myLight->setLight(GL_LIGHT0);
+    //myLight->setLight(GL_LIGHT0);              //Ignoring Light For Now - Jacob
 
     return TRUE;
 }
@@ -91,12 +91,11 @@ void _Scene::drawScene()
     myLight->moveLight(deltaT);
 
     myKbMs->keyPressed(myPlayer, deltaT);   // To activate movement - Jacob
+    myKbMs->keyPressed(myCam, deltaT);      // Moves the camera too - Jacob
 
     glPushMatrix();                         // Start grouping matrix
     myPlayer->drawPlayer(deltaT);
     glPopMatrix();                          // End grouping matrix
-
-    
     
     /*                                     Ignoring the zombies just for now - Jacob
     for (int i = 0; i < numEnms; i++)
@@ -121,7 +120,7 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         if (myKbMs->wparam == VK_LEFT) myKbMs->left = true;
         if (myKbMs->wparam == VK_RIGHT) myKbMs->right = true;
 
-        myKbMs->keyPressed(myCam);
+        //myKbMs->keyPressed(myCam);
         break;
     
     case WM_KEYUP:

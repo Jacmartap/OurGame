@@ -3,7 +3,7 @@
 _SkyBox::_SkyBox()
 {
 	rot.x = rot.y = rot.z = 0;
-	scale.x = scale.y = scale.z = 100.0;
+	scale.x = scale.y = scale.z = 50.0;
 	pos.x = pos.y = 0;
 	pos.z = -8;
 
