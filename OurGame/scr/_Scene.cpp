@@ -136,7 +136,7 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
     case WM_LBUTTONDOWN:
     case WM_RBUTTONDOWN: 
-        myKbMs->wparam = wParam; 
+        myKbMs->wparam = wParam;
         break;
     
     case WM_LBUTTONUP: 
@@ -155,3 +155,8 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     
     return 0;
 }
+
+
+
+
+

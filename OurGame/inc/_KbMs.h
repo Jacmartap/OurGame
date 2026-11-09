@@ -21,12 +21,14 @@ public:
 	void keyUp();
 
 	void mouseEventDown(_Model*, double, double);
+	void mouseEventDown(_Camera*, double, double);
 	void mouseEventUp();
 
 	void mouseMove(_Model*, double, double);
 	void mouseWheel(_Model*, double);
 
 	void mouseMove(_SkyBox*, double, double);
+	void mouseMove(_Camera*, double, double);
 
 	double prevMx;
 	double prevMy;
