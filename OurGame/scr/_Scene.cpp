@@ -119,12 +119,7 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         if (myKbMs->wparam == VK_DOWN) myKbMs->down = true;
         if (myKbMs->wparam == VK_LEFT) myKbMs->left = true;
         if (myKbMs->wparam == VK_RIGHT) myKbMs->right = true;
-        /*
-        if (myKbMs->wparam == VK_UP && VK_LEFT) { myKbMs->upLeft = true; cout << "upleft press" << endl; };    // To detect diagonal movement - Kyle
-        if (myKbMs->wparam == VK_UP && VK_RIGHT) myKbMs->upRight = true;
-        if (myKbMs->wparam == VK_DOWN &&  VK_LEFT) myKbMs->upLeft = true;
-        if (myKbMs->wparam == VK_DOWN &&VK_RIGHT) myKbMs->upRight = true;
-        */
+
         //myKbMs->keyPressed(myCam);
         break;
     
@@ -135,12 +130,6 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         if (myKbMs->wparam == VK_DOWN) myKbMs->down = false;
         if (myKbMs->wparam == VK_LEFT) myKbMs->left = false;
         if (myKbMs->wparam == VK_RIGHT) myKbMs->right = false;
-        /*
-        if (myKbMs->wparam == VK_UP && VK_LEFT) { myKbMs->upLeft = false; cout << "upleft release" << endl; };    // To detect diagonal movement key letting go - Kyle
-        if (myKbMs->wparam == VK_UP && VK_RIGHT) myKbMs->upRight = false;
-        if (myKbMs->wparam == VK_DOWN && VK_LEFT) myKbMs->upLeft = false;
-        if (myKbMs->wparam == VK_DOWN && VK_RIGHT) myKbMs->upRight = false;
-        */
         
         break;
 

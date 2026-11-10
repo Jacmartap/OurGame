@@ -141,15 +141,41 @@ void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to
 {
 	float speed = 3.5;
 
-	
-	if (up&&right)
+	// Added diagonal movement, and prevented directions from interfering with eachother - Kyle
+	if (up && right && !left)				// up right
 	{
 		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.x += deltaT * speed;
 		mdl->pos.z -= deltaT * speed;
 		mdl->rot.y = 135.0;
 	}
+
+	if (up && !right && left)				//up left
+	{
+		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.x -= deltaT * speed;
+		mdl->pos.z -= deltaT * speed;
+		mdl->rot.y = 225.0;
+	}
+
+	if (down && !right && left)				//down left
+	{
+		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.x -= deltaT * speed;
+		mdl->pos.z += deltaT * speed;
+		mdl->rot.y = -45.0;
+	}
+
+	if (down && right && !left)				//down right
+	{
+		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.x += deltaT * speed;
+		mdl->pos.z += deltaT * speed;
+		mdl->rot.y = 45.0;
+	}
+
 	
-	if (up && !left && !right)
+	if (up && !left && !right)				// up
 	{
 		mdl->ActionTrigger = mdl->RUN;
 		mdl->pos.z -= deltaT * speed;
@@ -157,21 +183,21 @@ void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to
 	}
 	
 	
-	if (right && !up)
+	if (right && !up && !down)				// right
 	{
 		mdl->ActionTrigger = mdl->RUN;
 		mdl->pos.x += deltaT * speed;
 		mdl->rot.y = 90.0;
 	}
 
-	if (down)
+	if (down && !left && !right)			// down
 	{
 		mdl->ActionTrigger = mdl->RUN;
 		mdl->pos.z += deltaT * speed;
 		mdl->rot.y = 0.0;
 	}
 	
-	if (left && !up)
+	if (left && !up && !down)				// left
 	{
 		mdl->ActionTrigger = mdl->RUN;
 		mdl->pos.x -= deltaT * speed;
@@ -179,7 +205,7 @@ void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to
 	}
 	
 	
-	if (!up && !down && !left && !right)
+	if (!up && !down && !left && !right)	// idle (no movement)
 	{
 		mdl->ActionTrigger = mdl->IDLE;
 	}
@@ -208,6 +234,7 @@ void _KbMs::keyPressed(_Camera* cm, float deltaT)   // Same as above but for cam
 	{
 		cm->MvLtRt(-1, deltaT * speed);
 	}
+
 }
 
 void _KbMs::keyUp(){
