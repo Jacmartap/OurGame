@@ -141,14 +141,23 @@ void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to
 {
 	float speed = 3.5;
 
-	if (up)
+	
+	if (up&&right)
+	{
+		mdl->ActionTrigger = mdl->RUN;
+		mdl->pos.z -= deltaT * speed;
+		mdl->rot.y = 135.0;
+	}
+	
+	if (up && !left && !right)
 	{
 		mdl->ActionTrigger = mdl->RUN;
 		mdl->pos.z -= deltaT * speed;
 		mdl->rot.y = 180.0;
 	}
-
-	if (right)
+	
+	
+	if (right && !up)
 	{
 		mdl->ActionTrigger = mdl->RUN;
 		mdl->pos.x += deltaT * speed;
@@ -161,13 +170,14 @@ void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to
 		mdl->pos.z += deltaT * speed;
 		mdl->rot.y = 0.0;
 	}
-
-	if (left)
+	
+	if (left && !up)
 	{
 		mdl->ActionTrigger = mdl->RUN;
 		mdl->pos.x -= deltaT * speed;
 		mdl->rot.y = -90.0;
 	}
+	
 	
 	if (!up && !down && !left && !right)
 	{

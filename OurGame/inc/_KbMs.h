@@ -43,6 +43,12 @@ public:
 	bool down = false;
 	bool left = false;
 	bool right = false;
+	/*
+	bool upLeft = false;
+	bool upRight = false;
+	bool downLeft = false;
+	bool downRight = false;
+	*/
 
 private:
 
