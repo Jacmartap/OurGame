@@ -60,13 +60,13 @@ void _PRLX::scrollPRLX(bool Auto, string dir, float speed, float delta)
 			xMax -= speed;
 		}
 
-		if (dir == "up")
+		if (dir == "forward")
 		{
 			yMin -= speed;
 			yMax -= speed;
 		}
 
-		if (dir == "down")
+		if (dir == "backward")
 		{
 			yMin += speed;
 			yMax += speed;

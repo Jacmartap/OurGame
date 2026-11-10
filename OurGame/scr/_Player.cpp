@@ -7,7 +7,7 @@ _Player::_Player()
 	pos.z = 0.0;
 
 	rot.x = 0.0;   // Initaializing rotation - Jacob
-	rot.y = 0.0;   //
+	rot.y = 180.0;   //
 	rot.z = 0.0;   //
 }
 

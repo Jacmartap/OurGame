@@ -69,7 +69,7 @@ void _Scene::reSize(GLint width, GLint height)
     glLoadIdentity();                // Reset matrices
 
     gluPerspective(45, aspectRatio, 0.1, 100.0);    // Settings of the projection
-    glMatrixMode(GL_MODELVIEW);                     // Set up model matrix and view matrix
+    glMatrixMode(GL_MODELVIEW);                     // Set forward model matrix and view matrix
     glLoadIdentity();
 
     dimX = GetSystemMetrics(SM_CXSCREEN);
@@ -86,12 +86,19 @@ void _Scene::drawScene()
     _Scene::deltaT = elapse.count();
     lastTime = currentTime;
     
+    myKbMs->keyPressed(myPlayer, myCam, deltaT);
+
+    myCam->des.x = myPlayer->pos.x;
+    myCam->des.y = myPlayer->pos.y + 1.0;
+    myCam->des.z = myPlayer->pos.z;
+
+    myCam->rotateXY();
+    
     myCam->SetupCam();
     mySky->drawSkyBox();
     myLight->moveLight(deltaT);
 
-    myKbMs->keyPressed(myPlayer, deltaT);   // To activate movement - Jacob
-    myKbMs->keyPressed(myCam, deltaT);      // Moves the camera too - Jacob
+    myKbMs->isMsRotate = true;
 
     glPushMatrix();                         // Start grouping matrix
     myPlayer->drawPlayer(deltaT);
@@ -115,10 +122,10 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_KEYDOWN:
         myKbMs->wparam = wParam;
 
-        if (myKbMs->wparam == VK_UP) myKbMs->up = true;          // To detect key presses - Jacob
-        if (myKbMs->wparam == VK_DOWN) myKbMs->down = true;
-        if (myKbMs->wparam == VK_LEFT) myKbMs->left = true;
-        if (myKbMs->wparam == VK_RIGHT) myKbMs->right = true;
+        if (myKbMs->wparam == 0x57) myKbMs->forward = true;          // To detect key presses - Jacob
+        if (myKbMs->wparam == 0x53) myKbMs->backward = true;
+        if (myKbMs->wparam == 65) myKbMs->left = true;
+        if (myKbMs->wparam == 68) myKbMs->right = true;
 
         //myKbMs->keyPressed(myCam);
         break;
@@ -126,21 +133,22 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_KEYUP:
         myKbMs->wparam = wParam;
 
-        if (myKbMs->wparam == VK_UP) myKbMs->up = false;         // To detect key letting go - Jacob
-        if (myKbMs->wparam == VK_DOWN) myKbMs->down = false;
-        if (myKbMs->wparam == VK_LEFT) myKbMs->left = false;
-        if (myKbMs->wparam == VK_RIGHT) myKbMs->right = false;
-        
+        if (myKbMs->wparam == 0x57) myKbMs->forward = false;         // To detect key letting go - Jacob
+        if (myKbMs->wparam == 0x53) myKbMs->backward = false;
+        if (myKbMs->wparam == 65) myKbMs->left = false;
+        if (myKbMs->wparam == 68) myKbMs->right = false;
         break;
 
     case WM_LBUTTONDOWN:
     case WM_RBUTTONDOWN: 
         myKbMs->wparam = wParam;
+        //myKbMs->mouseEventDown(myCam, LOWORD(lParam), HIWORD(lParam));
         break;
     
     case WM_LBUTTONUP: 
     case WM_RBUTTONUP:
-        myKbMs->mouseEventUp();
+        myKbMs->wparam = wParam;
+        //myKbMs->mouseEventUp();
         break;
     
     case WM_MOUSEWHEEL:
@@ -148,7 +156,7 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         break;
     
     case WM_MOUSEMOVE:
-        
+        myKbMs->mouseMove(myCam, LOWORD(lParam), HIWORD(lParam));
         break;
     }
     

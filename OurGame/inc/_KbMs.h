@@ -17,7 +17,7 @@ public:
 	void keyPressed(_SkyBox*);
 	void keyPressed(_Camera*);
 	void keyPressed(_PRLX*);
-	void keyPressed(_Player*, float);   // Altered for movement - Jacob
+	void keyPressed(_Player*, _Camera*, float);   // Altered one last time - Jacob
 	void keyPressed(_Camera* cm, float deltaT);   // Also Altered for movement - Jacob
 	void keyUp();
 
@@ -39,8 +39,8 @@ public:
 
 	WPARAM wparam;
 
-	bool up = false;		// New booleans to register movement - Jacob
-	bool down = false;
+	bool forward = false;		// New booleans to register movement - Jacob
+	bool backward = false;
 	bool left = false;
 	bool right = false;
 

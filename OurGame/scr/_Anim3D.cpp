@@ -15,7 +15,7 @@ _Anim3D::_Anim3D()
 
 _Anim3D::~_Anim3D()
 {
-    // Clean up GPU memory
+    // Clean forward GPU memory
     for (auto& vbo : meshVBOs) {
         glDeleteBuffers(1, &vbo.vboVertices);
         if (vbo.hasNormals) glDeleteBuffers(1, &vbo.vboNormals);

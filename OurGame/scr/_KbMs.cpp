@@ -137,85 +137,70 @@ void _KbMs::keyPressed(_PRLX* prlx)
 
 }
 
-void _KbMs::keyPressed(_Player* mdl, float deltaT)   // Uses the new booleans to dictate the direction of movement - Jacob
+void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // New Version - Jacob
 {
 	float speed = 3.5;
 
-	// Added diagonal movement, and prevented directions from interfering with eachother - Kyle
-	if (up && right && !left)				// up right
+	float yaw = cm->rot.x * PI / 180.0;
+
+	float forwardX = -sin(yaw);
+	float forwardZ = -cos(yaw);
+
+	float rightX = cos(yaw);
+	float rightZ = -sin(yaw);
+
+	float xPos = 0;
+	float zPos = 0;
+
+	if (forward)
 	{
-		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.x += deltaT * speed;
-		mdl->pos.z -= deltaT * speed;
-		mdl->rot.y = 135.0;
+		xPos += forwardX;
+		zPos += forwardZ;
+	}
+	
+	if (backward)
+	{ 
+		xPos -= forwardX;
+		zPos -= forwardZ;
+	}
+	
+	if (right)
+	{
+		xPos += rightX;
+		zPos += rightZ;
+	}
+	
+	if (left)
+	{
+		xPos -= rightX;
+		zPos -= rightZ;
 	}
 
-	if (up && !right && left)				//up left
-	{
-		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.x -= deltaT * speed;
-		mdl->pos.z -= deltaT * speed;
-		mdl->rot.y = 225.0;
-	}
+	float length = sqrt(xPos * xPos + zPos * zPos);
 
-	if (down && !right && left)				//down left
+	if (length > 0)
 	{
-		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.x -= deltaT * speed;
-		mdl->pos.z += deltaT * speed;
-		mdl->rot.y = -45.0;
-	}
+		xPos /= length;
+		zPos /= length;
 
-	if (down && right && !left)				//down right
-	{
-		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.x += deltaT * speed;
-		mdl->pos.z += deltaT * speed;
-		mdl->rot.y = 45.0;
-	}
+		mdl->pos.x += xPos * speed * deltaT;
+		mdl->pos.z += zPos * speed * deltaT;
 
-	
-	if (up && !left && !right)				// up
-	{
-		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.z -= deltaT * speed;
-		mdl->rot.y = 180.0;
-	}
-	
-	
-	if (right && !up && !down)				// right
-	{
-		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.x += deltaT * speed;
-		mdl->rot.y = 90.0;
-	}
+		mdl->rot.y = atan2(xPos, zPos) * 180.0 / PI;
 
-	if (down && !left && !right)			// down
-	{
 		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.z += deltaT * speed;
-		mdl->rot.y = 0.0;
 	}
-	
-	if (left && !up && !down)				// left
-	{
-		mdl->ActionTrigger = mdl->RUN;
-		mdl->pos.x -= deltaT * speed;
-		mdl->rot.y = -90.0;
-	}
-	
-	
-	if (!up && !down && !left && !right)	// idle (no movement)
+	else
 	{
 		mdl->ActionTrigger = mdl->IDLE;
 	}
 }
 
-void _KbMs::keyPressed(_Camera* cm, float deltaT)   // Same as above but for camera - Jacob
+void _KbMs::keyPressed(_Camera* cm, float deltaT)   // Old camera function kept the same - Jacob
 {
 	float speed = 3.5;
 
-	if (up)
+	if (forward)
 	{
 		cm->MvFdBd(-1, deltaT * speed);
 	}
@@ -225,7 +210,7 @@ void _KbMs::keyPressed(_Camera* cm, float deltaT)   // Same as above but for cam
 		cm->MvLtRt(1, deltaT * speed);
 	}
 
-	if (down)
+	if (backward)
 	{
 		cm->MvFdBd(1, deltaT * speed);
 	}
@@ -262,6 +247,29 @@ void _KbMs::mouseEventDown(_Model* mdl, double x, double y)
 	case MK_MBUTTON:
 		 break;
 	
+	default:
+		break;
+	}
+}
+
+void _KbMs::mouseEventDown(_Camera* cm, double x, double y)
+{
+	prevMx = x;
+	prevMy = y;
+
+	switch (wparam)
+	{
+	case MK_LBUTTON:
+		isMsRotate = true;
+		break;
+
+	case MK_RBUTTON:
+		isMsTranslate = true;
+		break;
+
+	case MK_MBUTTON:
+		break;
+
 	default:
 		break;
 	}
@@ -313,6 +321,29 @@ void _KbMs::mouseMove(_SkyBox* mdl, double x, double y)
 		mdl->pos.y += (prevMy - y) / 100.0;
 	}
 	
+	prevMx = x;
+	prevMy = y;
+}
+
+void _KbMs::mouseMove(_Camera* cm, double x, double y)
+{
+	if (isMsRotate) {
+		cm->rot.x += (x - prevMx) / 10.0;
+		cm->rot.y += (y - prevMy) / 10.0;
+
+		if (cm->rot.y < 0)
+		{
+			cm->rot.y = 0;
+		}
+
+		if (cm->rot.y > 90)
+		{
+			cm->rot.y = 90;
+		}
+
+		cm->rotateXY();
+	}
+
 	prevMx = x;
 	prevMy = y;
 }

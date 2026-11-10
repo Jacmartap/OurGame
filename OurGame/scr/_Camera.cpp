@@ -24,7 +24,13 @@ void _Camera::camInit()
 	rot.y = 0;
 	rot.z = 0;
 
-	distance = sqrt(pow((des.x - eye.x), 2) + pow((des.x - eye.x), 2) + pow((des.y - eye.y), 2) + pow((des.z - eye.z), 2));
+	//distance = sqrt(pow((des.x - eye.x), 2) + pow((des.x - eye.x), 2) + pow((des.y - eye.y), 2) + pow((des.z - eye.z), 2));
+
+
+
+
+
+	distance = sqrt(pow(des.x - eye.x, 2) + pow(des.y - eye.y, 2) + pow(des.z - eye.z, 2));
 }
 
 void _Camera::camReset()
@@ -47,7 +53,12 @@ void _Camera::camReset()
 	rot.y = 0;
 	rot.z = 0;
 	
-	distance = sqrt(pow((des.x - eye.x), 2) + pow((des.x - eye.x), 2) + pow((des.y - eye.y), 2) + pow((des.z - eye.z), 2));
+	//distance = sqrt(pow((des.x - eye.x), 2) + pow((des.x - eye.x), 2) + pow((des.y - eye.y), 2) + pow((des.z - eye.z), 2));
+
+
+
+
+	distance = sqrt(pow(des.x - eye.x, 2) + pow(des.y - eye.y, 2) + pow(des.z - eye.z, 2));
 }
 
 void _Camera::rotateXY()
