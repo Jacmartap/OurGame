@@ -88,17 +88,17 @@ void _Scene::drawScene()
     
     myKbMs->keyPressed(myPlayer, myCam, deltaT);
 
-    myCam->des.x = myPlayer->pos.x;
-    myCam->des.y = myPlayer->pos.y + 1.0;
-    myCam->des.z = myPlayer->pos.z;
-
-    myCam->rotateXY();
+    myCam->des.x = myPlayer->pos.x;         // Still lets the camera point to the player
+    myCam->des.y = myPlayer->pos.y + 1.0;   //
+    myCam->des.z = myPlayer->pos.z;         //
+                                            //
+    myCam->rotateXY();                      //
     
     myCam->SetupCam();
     mySky->drawSkyBox();
     myLight->moveLight(deltaT);
 
-    myKbMs->isMsRotate = true;
+    myKbMs->isMsRotate = true;              // Camera always active
 
     glPushMatrix();                         // Start grouping matrix
     myPlayer->drawPlayer(deltaT);
