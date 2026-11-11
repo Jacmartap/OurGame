@@ -40,10 +40,9 @@ public:
 	WPARAM wparam;
 
 	bool forward = false;		// New booleans to register movement - Jacob
-	bool backward = false;
-	bool left = false;
-	bool right = false;
-
+	bool backward = false;      //
+	bool left = false;          //
+	bool right = false;         //
 
 private:
 

@@ -2,7 +2,6 @@
 
 _KbMs::_KbMs()
 {
-
 	isMsTranslate = false;
 	isMsRotate = false;
 }
@@ -273,14 +272,26 @@ void _KbMs::mouseEventDown(_Camera* cm, double x, double y)
 	default:
 		break;
 	}
+
+	if (isMsRotate)
+	{
+		HWND Window = GetActiveWindow();
+		RECT windowCoords;
+		
+		GetClientRect(Window, &windowCoords);
+
+		POINT winodwCenter = { windowCoords.right / 2, windowCoords.bottom / 2 };
+		
+		ClientToScreen(Window, &winodwCenter);
+		
+		SetCursorPos(winodwCenter.x, winodwCenter.y);
+	}
 }
 
 void _KbMs::mouseEventUp()
 {
-
 	isMsTranslate = false;
 	isMsRotate = false;
-
 }
 
 void _KbMs::mouseMove(_Model* mdl, double x, double y) {
@@ -325,25 +336,37 @@ void _KbMs::mouseMove(_SkyBox* mdl, double x, double y)
 	prevMy = y;
 }
 
-void _KbMs::mouseMove(_Camera* cm, double x, double y)
+void _KbMs::mouseMove(_Camera* cm, double x, double y)   // The new version of mouse camera control function - Jacob
 {
-	if (isMsRotate) {
-		cm->rot.x += (x - prevMx) / 10.0;
-		cm->rot.y += (y - prevMy) / 10.0;
+	if (isMsRotate)
+	{
+		HWND Window = GetActiveWindow();   // To interact with the window - Jacob
+		RECT WindowCoords;                 // To determine the edges of the window - Jacob
 
-		if (cm->rot.y < 0)
+		GetClientRect(Window, &WindowCoords);
+
+		int prevMx = WindowCoords.right / 2;
+		int prevMy = WindowCoords.bottom / 2;
+
+		cm->rot.x += (x - prevMx) / 10;
+		cm->rot.y += (y - prevMy) / 10;
+
+		if (cm->rot.y < -5)
 		{
-			cm->rot.y = 0;
+			cm->rot.y = -5;
 		}
-
+		
 		if (cm->rot.y > 90)
 		{
 			cm->rot.y = 90;
 		}
 
 		cm->rotateXY();
-	}
 
-	prevMx = x;
-	prevMy = y;
+		POINT windowCenter = {prevMx, prevMy};
+		
+		ClientToScreen(Window, &windowCenter);
+		
+		SetCursorPos(windowCenter.x, windowCenter.y);
+	}
 }

@@ -98,7 +98,7 @@ void _Scene::drawScene()
     mySky->drawSkyBox();
     myLight->moveLight(deltaT);
 
-    myKbMs->isMsRotate = true;              // Camera always active
+    //myKbMs->isMsRotate = true;              // Camera always active
 
     glPushMatrix();                         // Start grouping matrix
     myPlayer->drawPlayer(deltaT);
@@ -142,7 +142,7 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_LBUTTONDOWN:
     case WM_RBUTTONDOWN: 
         myKbMs->wparam = wParam;
-        //myKbMs->mouseEventDown(myCam, LOWORD(lParam), HIWORD(lParam));
+        myKbMs->mouseEventDown(myCam, LOWORD(lParam), HIWORD(lParam));
         break;
     
     case WM_LBUTTONUP: 

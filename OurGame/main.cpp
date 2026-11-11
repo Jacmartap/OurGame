@@ -34,7 +34,7 @@ void KillGLWindow()					    // Properly Kill The Window
 	if (fullscreen)						// Are We In Fullscreen Mode?
 	{
 		ChangeDisplaySettings(NULL, 0);	// If So Switch Back To The Desktop
-		ShowCursor(TRUE);				// Show Mouse Pointer
+		ShowCursor(FALSE);				// Show Mouse Pointer
 	}
 
 	if (hRC)							// Do We Have A Rendering Context?
