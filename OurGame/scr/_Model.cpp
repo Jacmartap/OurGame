@@ -16,6 +16,26 @@ _Model::_Model()
 
 }
 
+_Model::_Model(float posX, float posY, float posZ, float sclX, float sclY, float sclZ, float rotX, float rotY, float rotZ, float colR, float colG, float colB, float colA)
+{
+	pos.x = posX;
+	pos.y = posY;
+	pos.z = posZ;
+
+	scale.x = sclX;
+	scale.y = sclY;
+	scale.z = sclZ;
+
+	rotate.x = rotX;
+	rotate.y = rotY;
+	rotate.z = rotZ;
+
+	color.r = colR;
+	color.g = colB;
+	color.b = colG;
+	color.a = colA;
+}
+
 _Model::~_Model()
 {}
 
@@ -24,7 +44,7 @@ void _Model::initModel(const char* fileName)
 	myTex->loadTexture(fileName);
 }
 
-void _Model::drawModel()
+void _Model::drawModel()   // To draw cubes
 {
 	glPushMatrix();
 	
@@ -40,7 +60,105 @@ void _Model::drawModel()
 	
 	glScalef(scale.x, scale.y, scale.z);
 
-	//glutSolidTeapot(2.0);
+	glBegin(GL_QUADS);
+
+
+	// Front Face
+	glNormal3f(0, 0, 1);
+	
+	glTexCoord2f(0, 0);
+	glVertex3f(-1.0, -1.0, 1.0);
+	
+	glTexCoord2f(1, 0);
+	glVertex3f(1.0, -1.0, 1.0);
+	
+	glTexCoord2f(1, 1);
+	glVertex3f(1.0, 1.0, 1.0);
+	
+	glTexCoord2f(0, 1);
+	glVertex3f(-1.0, 1.0, 1.0);
+
+
+	// Back Face
+	glNormal3f(0, 0, -1);
+	
+	glTexCoord2f(0, 0);
+	glVertex3f(1.0, -1.0, -1.0);
+
+	glTexCoord2f(1, 0);
+	glVertex3f(-1.0, -1.0, -1.0);
+
+	glTexCoord2f(1, 1);
+	glVertex3f(-1.0, 1.0, -1.0);
+
+	glTexCoord2f(0, 1);
+	glVertex3f(1.0, 1.0, -1.0);
+
+
+	// Top Face
+	glNormal3f(0, 1, 0);
+
+	glTexCoord2f(0, 0);
+	glVertex3f(-1.0, 1.0, 1.0);
+
+	glTexCoord2f(1, 0);
+	glVertex3f(1.0, 1.0, 1.0);
+
+	glTexCoord2f(1, 1);
+	glVertex3f(1.0, 1.0, -1.0);
+
+	glTexCoord2f(0, 1);
+	glVertex3f(-1.0, 1.0, -1.0);
+
+
+	// Bottom Face
+	glNormal3f(0, -1, 0);
+
+	glTexCoord2f(0, 0);
+	glVertex3f(-1.0, -1.0, -1.0);
+
+	glTexCoord2f(1, 0);
+	glVertex3f(1.0, -1.0, -1.0);
+
+	glTexCoord2f(1, 1);
+	glVertex3f(1.0, -1.0, 1.0);
+
+	glTexCoord2f(0, 1);
+	glVertex3f(-1.0, -1.0, 1.0);
+
+
+	// Right Face
+	glNormal3f(1, 0, 0);
+
+	glTexCoord2f(0, 0);
+	glVertex3f(1.0, -1.0, 1.0);
+
+	glTexCoord2f(1, 0);
+	glVertex3f(1.0, -1.0, -1.0);
+
+	glTexCoord2f(1, 1);
+	glVertex3f(1.0, 1.0, -1.0);
+
+	glTexCoord2f(0, 1);
+	glVertex3f(1.0, 1.0, 1.0);
+	
+
+	// Left Face
+	glNormal3f(-1, 0, 0);
+	
+	glTexCoord2f(0, 0);
+	glVertex3f(-1.0, -1.0, -1.0);
+
+	glTexCoord2f(1, 0);
+	glVertex3f(-1.0, -1.0, 1.0);
+
+	glTexCoord2f(1, 1);
+	glVertex3f(-1.0, 1.0, 1.0);
+
+	glTexCoord2f(0, 1);
+	glVertex3f(-1.0, 1.0, -1.0);
+	
+	glEnd();
 
 	glPopMatrix();
 

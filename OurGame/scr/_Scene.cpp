@@ -40,6 +40,8 @@ GLint _Scene::initGL()
     myPlayer->initPlayer("models/Soldier/Jump.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 2);
     myPlayer->initPlayer("models/Soldier/Crouch.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 3);
     myPlayer->initPlayer("models/Soldier/Cartwheeling.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 4);
+
+    floor->initModel("images/Stainless_Steel.png");
     
     /*                                     Ignoring the zombies just for now - Jacob
     for (int i = 0; i < numEnms; i++)
@@ -103,6 +105,10 @@ void _Scene::drawScene()
     glPushMatrix();                         // Start grouping matrix
     myPlayer->drawPlayer(deltaT);
     glPopMatrix();                          // End grouping matrix
+
+    glPushMatrix();
+    floor->drawModel();
+    glPopMatrix();
     
     /*                                     Ignoring the zombies just for now - Jacob
     for (int i = 0; i < numEnms; i++)

@@ -82,9 +82,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
+      <AdditionalOptions>/VERBOSE:LIB %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -104,9 +105,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
+      <AdditionalOptions>/VERBOSE:LIB %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -124,9 +126,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
+      <AdditionalOptions>/VERBOSE:LIB %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -146,9 +149,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\64x;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib\assimp;C:\Users\Kassidy\Documents\GitHub\OurGame\common\lib;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\assimp;C:\Users\tapia\OneDrive\Desktop\CSCI179\common\lib\64x</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;SOIL64.lib;glew32.lib;assimp-vc145-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
+      <AdditionalOptions>/VERBOSE:LIB %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>

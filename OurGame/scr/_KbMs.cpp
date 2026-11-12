@@ -175,15 +175,15 @@ void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // New Version
 		zPos -= rightZ;
 	}
 
-	float length = sqrt(xPos * xPos + zPos * zPos);
+	float length = sqrt( pow(xPos, 2) + pow(zPos, 2) );
 
 	if (length > 0)
 	{
 		xPos /= length;
 		zPos /= length;
 
-		mdl->pos.x += xPos * speed * deltaT;
-		mdl->pos.z += zPos * speed * deltaT;
+		mdl->pos.x += xPos * deltaT * speed;
+		mdl->pos.z += zPos * deltaT * speed;
 
 		mdl->rot.y = atan2(xPos, zPos) * 180.0 / PI;
 
