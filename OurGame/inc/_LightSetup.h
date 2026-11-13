@@ -11,7 +11,7 @@ public:
 	const float Light_Ambient[4] = { 0.4, 0.4, 0.4, 1.0 };
 	const float Light_Diffuse[4] = { 1.0, 1.4, 1.4, 1.0 };
 	const float Light_Specular[4] = { 1.0, 1.0, 1.0, 1.0 };
-	const float Light_Position[4] = { 10.0, 10.0, 10.0, 1.0 };
+	const float Light_Position[4] = { 50.0, 50.0, 50.0, 1.0 };
 
 	const float Matte_Diffuse[4] = { 1.0, 1.4, 1.4, 1.0 };
 	const float Matte_Specular[4] = { 1.0, 1.0, 1.0, 1.0 };

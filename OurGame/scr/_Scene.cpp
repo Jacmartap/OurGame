@@ -26,12 +26,12 @@ GLint _Scene::initGL()
 
     mySky->initSkyBox();
 
-    mySky->myTex[0].loadTexture("images/sky/nz.png"); // Front
-    mySky->myTex[1].loadTexture("images/sky/pz.png"); // Back
-    mySky->myTex[2].loadTexture("images/sky/py.png"); // Top
-    mySky->myTex[3].loadTexture("images/sky/ny.png"); // Bottom
-    mySky->myTex[4].loadTexture("images/sky/nx.png"); // Left
-    mySky->myTex[5].loadTexture("images/sky/px.png"); // Right
+    mySky->myTex[0].loadTexture("images/nz.png"); // Front
+    mySky->myTex[1].loadTexture("images/pz.png"); // Back
+    mySky->myTex[2].loadTexture("images/py.png"); // Top
+    mySky->myTex[3].loadTexture("images/ny.png"); // Bottom
+    mySky->myTex[4].loadTexture("images/nx.png"); // Left
+    mySky->myTex[5].loadTexture("images/px.png"); // Right
 
     myCam->camInit();
 
