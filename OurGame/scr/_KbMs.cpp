@@ -182,8 +182,8 @@ void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // Ok, for rea
 		xPos /= length;
 		zPos /= length;
 
-		mdl->pos.x += xPos * deltaT * 3.5;
-		mdl->pos.z += zPos * deltaT * 3.5;
+		mdl->pos.x += xPos * deltaT * 4.0;
+		mdl->pos.z += zPos * deltaT * 4.0;
 
 		mdl->rot.y = atan2(xPos, zPos) * 180.0 / PI;
 	}
@@ -313,7 +313,7 @@ void _KbMs::mouseMove(_Model* mdl, double x, double y) {
 
 void _KbMs::mouseWheel(_Model* mdl, double delta)
 {
-	mdl->pos.z += delta/ 100.0;
+	mdl->pos.z += delta / 100.0;
 }
 
 void _KbMs::mouseMove(_SkyBox* mdl, double x, double y)
