@@ -28,11 +28,15 @@ class _Scene
        _PRLX* myPRLX = new _PRLX();
        _ModelLoader* my3DModel = new _ModelLoader();
        _LightSetup* myLight = new _LightSetup();
-       _Player* myPlayer = new _Player(); // With Multiple Actions
+       _Player* myPlayer = new _Player();           // With Multiple Actions
 
        _Enemy myEnms[numEnms];
 
-       _Model* floor = new _Model(0.0, -2.1, 0.0, 5.0, 0.1, 5.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0);          //   (, , , , , , , , , , , , );
+       _Model* floor = new _Model(0.0, -0.1, -9.0, 10.0, 0.1, 10.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0);         // Creating and placing objects
+                                                                                                                //
+       _Model* crate1 = new _Model(0.0, 1.0, -4.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0);           //
+       _Model* crate2 = new _Model(-5.0, 1.0, -12.0, 1.0, 1.0, 1.0, 0.0, 45.0, 0.0, 1.0, 1.0, 1.0, 1.0);        //
+       _Model* crate3 = new _Model(5.0, 1.0, -12.0, 1.0, 1.0, 1.0, 0.0, -45.0, 0.0, 1.0, 1.0, 1.0, 1.0);        //
 
        float dimX;
        float dimY;

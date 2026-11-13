@@ -13,10 +13,10 @@ public:
 	void drawPlayer(float);
 	int ActionTrigger = 0;
 
-	_Anim3D myPlayer[5];
-	_TxtLoader myTex[5];
+	_Anim3D myPlayer[4];
+	_TxtLoader myTex[4];
 
-	enum {IDLE, RUN, JUMP, CROUCH, CARTWHEEL};
+	enum {IDLE, RUN, PUNCH, DEFEAT};
 
 	vec3 pos;
 	vec3 rot;   // Tracks rotation - Jacob

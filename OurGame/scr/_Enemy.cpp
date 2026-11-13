@@ -3,7 +3,7 @@
 _Enemy::_Enemy()
 {
 	pos.x = 0;
-	pos.y = -2;
+	pos.y = 0;
 	pos.z = -5;
 
 	eSize.x = 1.0;

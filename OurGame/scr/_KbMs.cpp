@@ -136,17 +136,15 @@ void _KbMs::keyPressed(_PRLX* prlx)
 
 }
 
-void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // New Version - Jacob
+void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // Ok, for real, this is the absolute final version - Jacob
 {
-	float speed = 3.5;
+	float yawRotation = cm->rot.x * PI / 180.0;
 
-	float yaw = cm->rot.x * PI / 180.0;
+	float forwardX = -sin(yawRotation);
+	float forwardZ = -cos(yawRotation);
 
-	float forwardX = -sin(yaw);
-	float forwardZ = -cos(yaw);
-
-	float rightX = cos(yaw);
-	float rightZ = -sin(yaw);
+	float rightX = cos(yawRotation);
+	float rightZ = -sin(yawRotation);
 
 	float xPos = 0;
 	float zPos = 0;
@@ -156,19 +154,19 @@ void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // New Version
 		xPos += forwardX;
 		zPos += forwardZ;
 	}
-	
+
 	if (backward)
-	{ 
+	{
 		xPos -= forwardX;
 		zPos -= forwardZ;
 	}
-	
+
 	if (right)
 	{
 		xPos += rightX;
 		zPos += rightZ;
 	}
-	
+
 	if (left)
 	{
 		xPos -= rightX;
@@ -179,15 +177,15 @@ void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // New Version
 
 	if (length > 0)
 	{
+		mdl->ActionTrigger = mdl->RUN;
+
 		xPos /= length;
 		zPos /= length;
 
-		mdl->pos.x += xPos * deltaT * speed;
-		mdl->pos.z += zPos * deltaT * speed;
+		mdl->pos.x += xPos * deltaT * 3.5;
+		mdl->pos.z += zPos * deltaT * 3.5;
 
 		mdl->rot.y = atan2(xPos, zPos) * 180.0 / PI;
-
-		mdl->ActionTrigger = mdl->RUN;
 	}
 	else
 	{
@@ -351,14 +349,14 @@ void _KbMs::mouseMove(_Camera* cm, double x, double y)   // The new version of m
 		cm->rot.x += (x - prevMx) / 10;
 		cm->rot.y += (y - prevMy) / 10;
 
-		if (cm->rot.y < -5)
+		if (cm->rot.y < 0)
 		{
-			cm->rot.y = -5;
+			cm->rot.y = 0;
 		}
 		
-		if (cm->rot.y > 90)
+		if (cm->rot.y > 85)
 		{
-			cm->rot.y = 90;
+			cm->rot.y = 85;
 		}
 
 		cm->rotateXY();

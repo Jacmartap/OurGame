@@ -35,27 +35,27 @@ GLint _Scene::initGL()
 
     myCam->camInit();
 
-    myPlayer->initPlayer("models/Soldier/Idle.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 0);
-    myPlayer->initPlayer("models/Soldier/Running.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 1);
-    myPlayer->initPlayer("models/Soldier/Jump.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 2);
-    myPlayer->initPlayer("models/Soldier/Crouch.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 3);
-    myPlayer->initPlayer("models/Soldier/Cartwheeling.fbx", "models/Soldier/Ch49_1001_Diffuse.png", 4);
+    myPlayer->initPlayer("models/Player/Player_Idle.fbx", "models/Player/BODY_Diffuse.png", myPlayer->IDLE);        // The new player models, and floor + crates
+    myPlayer->initPlayer("models/Player/Player_Run.fbx", "models/Player/BODY_Diffuse.png", myPlayer->RUN);
+    myPlayer->initPlayer("models/Player/Player_Punch.fbx", "models/Player/BODY_Diffuse.png", myPlayer->PUNCH);
+    myPlayer->initPlayer("models/Player/Player_Defeat.fbx", "models/Player/BODY_Diffuse.png", myPlayer->DEFEAT);
 
-    floor->initModel("images/Stainless_Steel.png");
+    floor->initModel("images/floor.jpg");
+    crate1->initModel("images/crate.png");
+    crate2->initModel("images/crate.png");
+    crate3->initModel("images/crate.png");
     
-    /*                                     Ignoring the zombies just for now - Jacob
+    /*                                   //Ignoring the zombies just for now - Jacob
     for (int i = 0; i < numEnms; i++)
     {
-        myEnms[i].initEnms("models/Zombie/Zombie_Idle.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 0);
-        myEnms[i].initEnms("models/Zombie/Zombie_Running.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 1);
-        myEnms[i].initEnms("models/Zombie/Zombie_Attack.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 2);
-        myEnms[i].initEnms("models/Zombie/Zombie_Left_Strafe.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 3);
-        myEnms[i].initEnms("models/Zombie/Zombie_Right_Strafe.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 4);
-        myEnms[i].initEnms("models/Zombie/Zombie_Die.fbx", "models/Zombie/Ch10_1001_Diffuse.png", 5);
+        myEnms[i].initEnms("models/Zombie/Zombie_Idle.fbx", "models/Zombie/BODY_Diffuse.png", myEnms[i].IDLE);
+        myEnms[i].initEnms("models/Zombie/Zombie_Running.fbx", "models/Zombie/BODY_Diffuse.png", myEnms[i].RUN);
+        myEnms[i].initEnms("models/Zombie/Zombie_Attack.fbx", "models/Zombie/BODY_Diffuse.png", myEnms[i].ATTACK);
+        myEnms[i].initEnms("models/Zombie/Zombie_Die.fbx", "models/Zombie/BODY_Diffuse.png", myEnms[i].DIE);
     }
     */
     
-    //myLight->setLight(GL_LIGHT0);              //Ignoring Light For Now - Jacob
+    myLight->setLight(GL_LIGHT0);
 
     return TRUE;
 }
@@ -81,6 +81,7 @@ void _Scene::reSize(GLint width, GLint height)
 void _Scene::drawScene()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth
+    
     glLoadIdentity();
 
     auto currentTime = chrono::steady_clock::now();
@@ -90,17 +91,15 @@ void _Scene::drawScene()
     
     myKbMs->keyPressed(myPlayer, myCam, deltaT);
 
-    myCam->des.x = myPlayer->pos.x;         // Still lets the camera point to the player
-    myCam->des.y = myPlayer->pos.y + 1.0;   //
-    myCam->des.z = myPlayer->pos.z;         //
-                                            //
-    myCam->rotateXY();                      //
+    myCam->des = myPlayer->pos; // Camera points to the camera at all times - Jacob
+    myCam->des.y += 2.0;        // Puts camera a bit higher (don't change) - Jacob
     
     myCam->SetupCam();
+    myCam->rotateXY();
+    
     mySky->drawSkyBox();
-    myLight->moveLight(deltaT);
 
-    //myKbMs->isMsRotate = true;              // Camera always active
+    myLight->placeLight();                  // Lighting gets placed - Jacob
 
     glPushMatrix();                         // Start grouping matrix
     myPlayer->drawPlayer(deltaT);
@@ -108,6 +107,9 @@ void _Scene::drawScene()
 
     glPushMatrix();
     floor->drawModel();
+    crate1->drawModel();
+    crate2->drawModel();
+    crate3->drawModel();
     glPopMatrix();
     
     /*                                     Ignoring the zombies just for now - Jacob
@@ -127,22 +129,52 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_KEYDOWN:
         myKbMs->wparam = wParam;
+        
+        if (myKbMs->wparam == 0x57)         // To detect key presses - Jacob
+        {
+            myKbMs->forward = true;
+        }
 
-        if (myKbMs->wparam == 0x57) myKbMs->forward = true;          // To detect key presses - Jacob
-        if (myKbMs->wparam == 0x53) myKbMs->backward = true;
-        if (myKbMs->wparam == 65) myKbMs->left = true;
-        if (myKbMs->wparam == 68) myKbMs->right = true;
+        if (myKbMs->wparam == 0x53)
+        {
+            myKbMs->backward = true;
+        }
 
-        //myKbMs->keyPressed(myCam);
+        if (myKbMs->wparam == 65)
+        {
+            myKbMs->left = true;
+        }
+        
+        if (myKbMs->wparam == 68)
+        {
+            myKbMs->right = true;
+        }
+        
         break;
     
     case WM_KEYUP:
         myKbMs->wparam = wParam;
 
-        if (myKbMs->wparam == 0x57) myKbMs->forward = false;         // To detect key letting go - Jacob
-        if (myKbMs->wparam == 0x53) myKbMs->backward = false;
-        if (myKbMs->wparam == 65) myKbMs->left = false;
-        if (myKbMs->wparam == 68) myKbMs->right = false;
+        if (myKbMs->wparam == 0x57)         // To detect letting go of key - Jacob
+        {
+            myKbMs->forward = false;
+        }
+
+        if (myKbMs->wparam == 0x53)
+        {
+            myKbMs->backward = false;
+        }
+
+        if (myKbMs->wparam == 65)
+        {
+            myKbMs->left = false;
+        }
+
+        if (myKbMs->wparam == 68)
+        {
+            myKbMs->right = false;
+        }
+        
         break;
 
     case WM_LBUTTONDOWN:
@@ -162,7 +194,7 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         break;
     
     case WM_MOUSEMOVE:
-        myKbMs->mouseMove(myCam, LOWORD(lParam), HIWORD(lParam));
+       myKbMs->mouseMove(myCam, LOWORD(lParam), HIWORD(lParam));
         break;
     }
     

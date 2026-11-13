@@ -3,11 +3,11 @@
 _Player::_Player()
 {
 	pos.x = 0.0;
-	pos.y = -2.0;
+	pos.y = 0.0;
 	pos.z = 0.0;
 
 	rot.x = 0.0;   // Initaializing rotation - Jacob
-	rot.y = 180.0;   //
+	rot.y = 180.0; //
 	rot.z = 0.0;   //
 }
 

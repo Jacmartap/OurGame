@@ -32,16 +32,8 @@ void _LightSetup::setLight(GLenum light)
 	light0 = light; // Keep A Copy Of Light
 }
 
-void _LightSetup::moveLight(float deltaT)
+void _LightSetup::placeLight()			// New name, only removed the rotating
 {
-	timer += deltaT;
-
-	if (timer > 0.05)
-	{
-		angle += 5.0;
-		timer = 0;
-	}
-	
 	glPushMatrix();
 
 	glRotatef(angle, 0.0, 1.0, 0.0);

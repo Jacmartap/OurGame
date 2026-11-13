@@ -4,7 +4,7 @@
 #include <_Anim3D.h>
 #include <_TxtLoader.h>
 
-#define numActions 6
+#define numActions 5
 
 class _Enemy
 {
@@ -16,10 +16,10 @@ public:
 	void update(float, vec3&, vec3&);		  // Timer, Pos, Player Pos
 	void drawEnms(float);						  // Timer
 
-	_Anim3D Enms[numActions];	 // 5 Actions
-	_TxtLoader myTex[numActions]; // If 5 Different Textures
+	_Anim3D Enms[numActions];
+	_TxtLoader myTex[numActions];
 
-	enum EnemyState {IDLE, RUNLEFT, RUNRIGHT, ATTACK, DIE};
+	enum EnemyState {IDLE, RUN, ATTACK, DIE};
 
 	vec3 pos;	// Position
 	vec3 eSize; // Size

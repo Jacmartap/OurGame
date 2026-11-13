@@ -64,7 +64,6 @@ void _Model::drawModel()   // To draw cubes
 
 
 	// Front Face
-	glNormal3f(0, 0, 1);
 	
 	glTexCoord2f(0, 0);
 	glVertex3f(-1.0, -1.0, 1.0);
@@ -80,7 +79,6 @@ void _Model::drawModel()   // To draw cubes
 
 
 	// Back Face
-	glNormal3f(0, 0, -1);
 	
 	glTexCoord2f(0, 0);
 	glVertex3f(1.0, -1.0, -1.0);
@@ -96,7 +94,6 @@ void _Model::drawModel()   // To draw cubes
 
 
 	// Top Face
-	glNormal3f(0, 1, 0);
 
 	glTexCoord2f(0, 0);
 	glVertex3f(-1.0, 1.0, 1.0);
@@ -112,7 +109,6 @@ void _Model::drawModel()   // To draw cubes
 
 
 	// Bottom Face
-	glNormal3f(0, -1, 0);
 
 	glTexCoord2f(0, 0);
 	glVertex3f(-1.0, -1.0, -1.0);
@@ -128,7 +124,6 @@ void _Model::drawModel()   // To draw cubes
 
 
 	// Right Face
-	glNormal3f(1, 0, 0);
 
 	glTexCoord2f(0, 0);
 	glVertex3f(1.0, -1.0, 1.0);
@@ -144,7 +139,6 @@ void _Model::drawModel()   // To draw cubes
 	
 
 	// Left Face
-	glNormal3f(-1, 0, 0);
 	
 	glTexCoord2f(0, 0);
 	glVertex3f(-1.0, -1.0, -1.0);
