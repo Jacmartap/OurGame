@@ -22,6 +22,14 @@ void _Player::initPlayer(const char* filename, const char* skin, int trigger)
 	myPlayer[trigger].modelInit(filename, myTex[trigger].tex);
 }
 
+void _Player::initPlayer(const char* filename, const char* skin, const char* exoSkin, int trigger)
+{
+	myTex[trigger].loadTexture(skin);
+	myExoTex[trigger].loadTexture(exoSkin);						// Extra skin texture loader - kyle
+
+	myPlayer[trigger].modelInit(filename, myTex[trigger].tex, myExoTex[trigger].tex);
+}
+
 void _Player::drawPlayer(float deltaT)
 {
 	glTranslatef(pos.x, pos.y, pos.z);

@@ -117,6 +117,14 @@ void _Anim3D::modelInit(const char* fileName, GLuint ID) {
     modelCenter = (minB + maxB) * 0.5f;
 }
 
+void _Anim3D::modelInit(const char* fileName, GLuint bodyID, GLuint exoID)      // overloaded modelInit to load two textures using existing function - Kyle
+{
+    modelInit(fileName, bodyID);
+
+    exoTexID = exoID;
+    useSecondTexture = true;
+}
+
 void _Anim3D::evaluateBones(const aiAnimation* anim, const aiNode* nd, const aiMatrix4x4& parentTransform) {
     std::string nodeName(nd->mName.C_Str());
     aiMatrix4x4 localTransform = nd->mTransformation;
@@ -180,6 +188,19 @@ void _Anim3D::recursive_render(const aiScene* sc, const aiNode* nd, int specific
         unsigned int meshIndex = nd->mMeshes[n];
         const aiMesh* mesh = sc->mMeshes[meshIndex];
         MeshVBO& vbo = meshVBOs[meshIndex];
+
+
+        //============ added this for extra model texture fix - Kyle
+        // Select texture based on material index
+        if (useSecondTexture && mesh->mMaterialIndex == 1)
+        {
+            glBindTexture(GL_TEXTURE_2D, exoTexID);
+        }
+        else
+        {
+            glBindTexture(GL_TEXTURE_2D, texID);
+        }
+        //============
 
         bool isSkeletal = mesh->mNumBones > 0;
         bool isMorphAnim = mesh->mNumAnimMeshes > 0;
@@ -283,7 +304,9 @@ void _Anim3D::recursive_render(const aiScene* sc, const aiNode* nd, int specific
 void _Anim3D::display(float deltaT) {
     if (scene) {
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, texID);
+
+        //Commented line under for model extra texture fix - Kyle
+        //glBindTexture(GL_TEXTURE_2D, texID);
 
         glPushMatrix();
 

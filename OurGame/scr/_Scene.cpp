@@ -35,10 +35,10 @@ GLint _Scene::initGL()
 
     myCam->camInit();
 
-    myPlayer->initPlayer("models/Player/Player_Idle.fbx", "models/Player/BODY_Diffuse.png", myPlayer->IDLE);        // The new player models, and floor + crates
-    myPlayer->initPlayer("models/Player/Player_Run.fbx", "models/Player/BODY_Diffuse.png", myPlayer->RUN);
-    myPlayer->initPlayer("models/Player/Player_Punch.fbx", "models/Player/BODY_Diffuse.png", myPlayer->PUNCH);
-    myPlayer->initPlayer("models/Player/Player_Defeat.fbx", "models/Player/BODY_Diffuse.png", myPlayer->DEFEAT);
+    myPlayer->initPlayer("models/Player/Player_Idle.fbx", "models/Player/BODY_Diffuse.png","models/Player/EXO_diffuse.png", myPlayer->IDLE);        // The new player models, and floor + crates
+    myPlayer->initPlayer("models/Player/Player_Run.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", myPlayer->RUN);
+    myPlayer->initPlayer("models/Player/Player_Punch.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", myPlayer->PUNCH);
+    myPlayer->initPlayer("models/Player/Player_Defeat.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", myPlayer->DEFEAT);
 
     floor->initModel("images/floor.jpg");
     crate1->initModel("images/crate.png");

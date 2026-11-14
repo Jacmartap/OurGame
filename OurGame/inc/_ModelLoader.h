@@ -20,6 +20,7 @@ public:
 	~_ModelLoader();
 	
 	void modelInit(const char*, const char*);
+	void modelInit(const char*, GLuint, GLuint);				// Overloading modelinit for extra player textures - Kyle
 	void recursive_render(const aiScene* sc, const aiNode* nd);
 	void display(float);
 };

@@ -35,11 +35,14 @@ public:
     ~_Anim3D();
 
     void modelInit(const char* fileName, GLuint ID);
+    void modelInit(const char* fileName, GLuint bodyID, GLuint exoID);  // overloading modelInit for extra player texture - Kyle
     void evaluateBones(const aiAnimation* anim, const aiNode* nd, const aiMatrix4x4& parentTransform);
     void recursive_render(const aiScene* sc, const aiNode* nd, int specificFrame = -1);
     void display(float deltaT);
 
     GLuint texID;
+    GLuint exoTexID;                // extra texture for player, and bool to check if using two textures - Kyle
+    bool useSecondTexture = false;
 
 private:
     const aiScene* scene;
