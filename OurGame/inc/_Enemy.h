@@ -26,6 +26,6 @@ public:
 		
 	bool active = false;
 
-	EnemyState actionTrigger = IDLE;
+	int actionTrigger = IDLE;
 };
 

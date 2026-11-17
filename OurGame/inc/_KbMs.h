@@ -23,6 +23,7 @@ public:
 
 	void mouseEventDown(_Model*, double, double);
 	void mouseEventDown(_Camera*, double, double);
+	void mouseEventDown(_Player*, double, double);	// Added mouse button function to control player - Kyle
 	void mouseEventUp();
 
 	void mouseMove(_Model*, double, double);

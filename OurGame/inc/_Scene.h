@@ -13,7 +13,7 @@
 #include <_Player.h>
 #include <chrono>
 
-#define numEnms 5
+#define numEnms 3
 
 class _Scene
 {

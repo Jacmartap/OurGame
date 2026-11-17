@@ -322,3 +322,8 @@ void _Anim3D::display(float deltaT) {
         glPopMatrix();
     }
 }
+
+void _Anim3D::resetAnimation()      // Animation Control - Kyle
+{
+    currentAnimTime = 0.0f;
+}
