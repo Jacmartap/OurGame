@@ -32,6 +32,8 @@ void _Player::initPlayer(const char* filename, const char* skin, const char* exo
 
 void _Player::drawPlayer(float deltaT)
 {
+    updateAction(deltaT);              // Animation Control - Kyle
+
 	glTranslatef(pos.x, pos.y, pos.z);
 
 	glRotatef(rot.x, 1.0, 0.0, 0.0);   // Rotation is now part of drawing the player - Jacob
@@ -39,4 +41,44 @@ void _Player::drawPlayer(float deltaT)
 	glRotatef(rot.z, 0.0, 0.0, 1.0);   //
 
 	myPlayer[ActionTrigger].display(deltaT);
+}
+
+// Three action management functions under added - Kyle
+void _Player::triggerAction(int action, float duration)
+{
+    ActionTrigger = action;
+
+    // Restart the selected animation
+    myPlayer[action].resetAnimation();
+
+    ActionDuration = duration;
+    ActionTimer = duration;
+
+    isActionActive = true;
+}
+
+
+void _Player::updateAction(float deltaT)
+{
+    if (isActionActive && ActionDuration > 0.0f)
+    {
+        ActionTimer -= deltaT;
+
+        if (ActionTimer <= 0.0f)
+        {
+            ActionTimer = 0.0f;
+            ActionDuration = 0.0f;
+            isActionActive = false;
+
+            ActionTrigger = IDLE;
+        }
+    }
+}
+
+void _Player::setMovementAction(int action)
+{
+    if (!isActionActive)
+    {
+        ActionTrigger = action;
+    }
 }

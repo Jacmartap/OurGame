@@ -177,7 +177,8 @@ void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // Ok, for rea
 
 	if (length > 0)
 	{
-		mdl->ActionTrigger = mdl->RUN;
+		//mdl->ActionTrigger = mdl->RUN;
+		mdl->setMovementAction(mdl->RUN);	// Animation Control - Kyle
 
 		xPos /= length;
 		zPos /= length;
@@ -189,7 +190,8 @@ void _KbMs::keyPressed(_Player* mdl, _Camera* cm, float deltaT)   // Ok, for rea
 	}
 	else
 	{
-		mdl->ActionTrigger = mdl->IDLE;
+		//mdl->ActionTrigger = mdl->IDLE;
+		mdl->setMovementAction(mdl->IDLE);	// Animation Control
 	}
 }
 
@@ -226,6 +228,37 @@ void _KbMs::keyUp(){
 	}
 }
 
+
+void _KbMs::mouseEventDown(_Player* mdl, double x, double y)		// Player mouse controls - Kyle
+{
+	prevMx = x;
+	prevMy = y;
+
+	switch (wparam)
+	{
+	case MK_LBUTTON:
+		if (!mdl->isActionActive)					// If no active animation, then player punch animation
+		{
+			mdl->triggerAction(mdl->PUNCH, 0.75f);	// Takes time input, currently 0.8f
+		}
+		break;
+
+	case MK_RBUTTON:
+		if (!mdl->isActionActive)
+		{
+			mdl->triggerAction(mdl->DEFEAT, 1.85f);
+		}
+		break;
+
+	case MK_MBUTTON:
+		break;
+
+	default:
+		break;
+	}
+}
+
+
 void _KbMs::mouseEventDown(_Model* mdl, double x, double y)
 {
 	prevMx = x;
@@ -248,6 +281,8 @@ void _KbMs::mouseEventDown(_Model* mdl, double x, double y)
 		break;
 	}
 }
+
+
 
 void _KbMs::mouseEventDown(_Camera* cm, double x, double y)
 {

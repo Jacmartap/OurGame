@@ -40,6 +40,8 @@ public:
     void recursive_render(const aiScene* sc, const aiNode* nd, int specificFrame = -1);
     void display(float deltaT);
 
+    void resetAnimation();          // Animation control, makes animations play from first frame instead of midway - Kyle
+
     GLuint texID;
     GLuint exoTexID;                // extra texture for player, and bool to check if using two textures - Kyle
     bool useSecondTexture = false;

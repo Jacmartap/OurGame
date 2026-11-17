@@ -15,6 +15,11 @@
 #include <_Quad.h>
 #include <chrono>
 
+<<<<<<< HEAD
+=======
+#define numEnms 3
+
+>>>>>>> 097eb7b04b58ebc6a458fd50491838677eb21713
 class _Scene
 {
     public:
