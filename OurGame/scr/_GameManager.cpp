@@ -66,7 +66,7 @@ void _GameManager::initMenu()
 {
     titleScreen->initPRLX("images/TitleScreen.png");
     menuScreen->initPRLX("images/MenuScreen.png");
-    howToPlayScreen->initPRLX("images/HowToPlayScreen.jpg");
+    howToPlayScreen->initPRLX("images/HowToPlayScreen.png");
     
     pausePopup->initQuad("images/PausePop_Up.png");
 
