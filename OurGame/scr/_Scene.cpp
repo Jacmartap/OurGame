@@ -108,6 +108,8 @@ void _Scene::drawScene()
 
     if (GM->currentState == GM->IN_GAME)
     {
+        ShowCursor(FALSE);
+
         myCam->des = GM->exoMan->pos; // Camera points to the camera at all times - Jacob
         myCam->des.y += 2.0;          // Puts camera a bit higher (don't change) - Jacob
         myCam->SetupCam();
