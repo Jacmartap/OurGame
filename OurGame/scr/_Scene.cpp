@@ -8,7 +8,7 @@ _Scene:: ~_Scene()      // Destructor
 {
     delete myMdl;
 }   
- 
+
 GLint _Scene::initGL()
 {
     glewInit();                     // Initialize glew
@@ -24,26 +24,26 @@ GLint _Scene::initGL()
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_COLOR_MATERIAL);    // Enable color
 
-    mySky->initSkyBox();
-
-    mySky->myTex[0].loadTexture("images/nz.png"); // Front
-    mySky->myTex[1].loadTexture("images/pz.png"); // Back
-    mySky->myTex[2].loadTexture("images/py.png"); // Top
-    mySky->myTex[3].loadTexture("images/ny.png"); // Bottom
-    mySky->myTex[4].loadTexture("images/nx.png"); // Left
-    mySky->myTex[5].loadTexture("images/px.png"); // Right
-
     myCam->camInit();
 
-    myPlayer->initPlayer("models/Player/Player_Idle.fbx", "models/Player/BODY_Diffuse.png","models/Player/EXO_diffuse.png", myPlayer->IDLE);        // The new player models, and floor + crates
-    myPlayer->initPlayer("models/Player/Player_Run.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", myPlayer->RUN);
-    myPlayer->initPlayer("models/Player/Player_Punch.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", myPlayer->PUNCH);
-    myPlayer->initPlayer("models/Player/Player_Defeat.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", myPlayer->DEFEAT);
+    GM->mySky->initSkyBox();
 
-    floor->initModel("images/floor.jpg");
-    crate1->initModel("images/crate.png");
-    crate2->initModel("images/crate.png");
-    crate3->initModel("images/crate.png");
+    GM->mySky->myTex[0].loadTexture("images/nz.png"); // Front
+    GM->mySky->myTex[1].loadTexture("images/pz.png"); // Back
+    GM->mySky->myTex[2].loadTexture("images/py.png"); // Top
+    GM->mySky->myTex[3].loadTexture("images/ny.png"); // Bottom
+    GM->mySky->myTex[4].loadTexture("images/nx.png"); // Left
+    GM->mySky->myTex[5].loadTexture("images/px.png"); // Right
+
+    GM->exoMan->initPlayer("models/Player/Player_Idle.fbx", "models/Player/BODY_Diffuse.png","models/Player/EXO_diffuse.png", GM->exoMan->IDLE);        // The new player models, and floor + crates
+    GM->exoMan->initPlayer("models/Player/Player_Run.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", GM->exoMan->RUN);
+    GM->exoMan->initPlayer("models/Player/Player_Punch.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", GM->exoMan->PUNCH);
+    GM->exoMan->initPlayer("models/Player/Player_Defeat.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", GM->exoMan->DEFEAT);
+
+    GM->floor->initModel("images/floor.jpg");
+    GM->crate1->initModel("images/crate.png");
+    GM->crate2->initModel("images/crate.png");
+    GM->crate3->initModel("images/crate.png");
     
     /*                                   //Ignoring the zombies just for now - Jacob
     for (int i = 0; i < numEnms; i++)
@@ -56,6 +56,8 @@ GLint _Scene::initGL()
     */
     
     myLight->setLight(GL_LIGHT0);
+
+    GM->initMenu();
 
     return TRUE;
 }
@@ -74,53 +76,51 @@ void _Scene::reSize(GLint width, GLint height)
     glMatrixMode(GL_MODELVIEW);                     // Set forward model matrix and view matrix
     glLoadIdentity();
 
-    dimX = GetSystemMetrics(SM_CXSCREEN);
-    dimY = GetSystemMetrics(SM_CYSCREEN);
+    dimX = width;
+    dimY = height;
 }
 
 void _Scene::drawScene()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth
-    
-    glLoadIdentity();
+
+    float aspectRatio = (GLfloat)dimX / (GLfloat)dimY; // To maintain graphics in size
 
     auto currentTime = chrono::steady_clock::now();
     chrono::duration<float>elapse = currentTime - lastTime;
     _Scene::deltaT = elapse.count();
     lastTime = currentTime;
-    
-    myKbMs->keyPressed(myPlayer, myCam, deltaT);
 
-    myCam->des = myPlayer->pos; // Camera points to the camera at all times - Jacob
-    myCam->des.y += 2.0;        // Puts camera a bit higher (don't change) - Jacob
-    
-    myCam->SetupCam();
-    myCam->rotateXY();
-    
-    mySky->drawSkyBox();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
-    myLight->placeLight();                  // Lighting gets placed - Jacob
-
-    glPushMatrix();                         // Start grouping matrix
-    myPlayer->drawPlayer(deltaT);
-    glPopMatrix();                          // End grouping matrix
-
-    glPushMatrix();
-    floor->drawModel();
-    crate1->drawModel();
-    crate2->drawModel();
-    crate3->drawModel();
-    glPopMatrix();
-    
-    /*                                     Ignoring the zombies just for now - Jacob
-    for (int i = 0; i < numEnms; i++)
+    if (GM->currentState == GM->IN_GAME)
     {
-        glPushMatrix();
-        glTranslatef((i * 1.0), 0.0, 0.0);
-        myEnms[i].drawEnms(deltaT);
-        glPopMatrix();
+        gluPerspective(45, aspectRatio, 0.1, 100.0);
     }
-    */
+    else
+    {
+        glOrtho(-dimX / dimY, dimX / dimY, -1.0, 1.0, -20.0, 20.0);
+    }
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    if (GM->currentState == GM->IN_GAME)
+    {
+        myCam->des = GM->exoMan->pos; // Camera points to the camera at all times - Jacob
+        myCam->des.y += 2.0;          // Puts camera a bit higher (don't change) - Jacob
+        myCam->SetupCam();
+        myCam->rotateXY();
+
+        myKbMs->keyPressed(GM->exoMan, myCam, deltaT);
+    }
+    
+    myLight->placeLight();                  // Lighting gets placed - Jacob
+    
+    GM->activateMenu(dimX, dimY, deltaT);
+
+    GM->update();
 }
 
 int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -129,25 +129,40 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_KEYDOWN:
         myKbMs->wparam = wParam;
-        
-        if (myKbMs->wparam == 0x57)         // To detect key presses - Jacob
-        {
-            myKbMs->forward = true;
-        }
 
-        if (myKbMs->wparam == 0x53)
+        if (GM->currentState == GM->IN_GAME)
         {
-            myKbMs->backward = true;
-        }
+            if (myKbMs->wparam == 0x57)         // To detect key presses - Jacob
+            {
+                myKbMs->forward = true;
+            }
 
-        if (myKbMs->wparam == 65)
-        {
-            myKbMs->left = true;
+            if (myKbMs->wparam == 0x53)
+            {
+                myKbMs->backward = true;
+            }
+
+            if (myKbMs->wparam == 65)
+            {
+                myKbMs->left = true;
+            }
+
+            if (myKbMs->wparam == 68)
+            {
+                myKbMs->right = true;
+            }
+
+            if (myKbMs->wparam == VK_ESCAPE)
+            {
+                if ((lParam & 0x40000000) == 0)
+                {
+                    myKbMs->keyPressed(GM);
+                }
+            }
         }
-        
-        if (myKbMs->wparam == 68)
+        else
         {
-            myKbMs->right = true;
+            myKbMs->keyPressed(GM);
         }
         
         break;
@@ -175,33 +190,88 @@ int _Scene::WndMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             myKbMs->right = false;
         }
         
+        if (GM->currentState == GM->IN_GAME)
+        {
+            // ???
+        }
+        else
+        {
+            GM->mouseClicked = false;
+        }
+        
         break;
 
     case WM_LBUTTONDOWN:
     case WM_RBUTTONDOWN: 
         myKbMs->wparam = wParam;
-        myKbMs->mouseEventDown(myCam, LOWORD(lParam), HIWORD(lParam));
+        
+        if (GM->currentState == GM->IN_GAME)
+        {
+            myKbMs->mouseEventDown(myCam, LOWORD(lParam), HIWORD(lParam));
+        }
+        else
+        {
+            GM->mouseClicked = true;
+
+            mouseMapping(LOWORD(lParam), HIWORD(lParam));
+
+            GM->mousePos.x = mouse.x;
+            GM->mousePos.y = mouse.y;
+        }
+        
         break;
     
     case WM_LBUTTONUP: 
     case WM_RBUTTONUP:
         myKbMs->wparam = wParam;
         //myKbMs->mouseEventUp();
+
+        GM->mouseClicked = false;
         break;
     
     case WM_MOUSEWHEEL:
-        myKbMs->mouseWheel(myMdl, (double)GET_WHEEL_DELTA_WPARAM(wParam));
+        if (GM->currentState == GM->IN_GAME)
+        {
+            myKbMs->mouseWheel(myMdl, (double)GET_WHEEL_DELTA_WPARAM(wParam));
+        }
+        
         break;
     
     case WM_MOUSEMOVE:
-       myKbMs->mouseMove(myCam, LOWORD(lParam), HIWORD(lParam));
+        if (GM->currentState == GM->IN_GAME)
+        {
+            myKbMs->mouseMove(myCam, LOWORD(lParam), HIWORD(lParam));
+        }
+        else
+        {
+            mouseMapping(LOWORD(lParam), HIWORD(lParam));
+
+            GM->mousePos.x = mouse.x;
+            GM->mousePos.y = mouse.y;
+        }
+        
         break;
     }
     
     return 0;
 }
 
+void _Scene::mouseMapping(int x, int y)
+{
+    GLint viewPort[4];
+    GLdouble modelViewM[16];
+    GLdouble projectionM[16];
 
+    GLfloat winX, winY, winZ;
 
+    glGetDoublev(GL_MODELVIEW_MATRIX, modelViewM);
+    glGetDoublev(GL_PROJECTION_MATRIX, projectionM);
+    glGetIntegerv(GL_VIEWPORT, viewPort);
 
+    winX = GLfloat(x);
+    winY = GLfloat(viewPort[3] - y - 1);
 
+    glReadPixels(int(winX), int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
+    gluUnProject(winX, winY, winZ, modelViewM, projectionM, viewPort, &mouse.x, &mouse.y, &mouse.z);
+}

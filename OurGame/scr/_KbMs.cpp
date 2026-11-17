@@ -368,3 +368,78 @@ void _KbMs::mouseMove(_Camera* cm, double x, double y)   // The new version of m
 		SetCursorPos(windowCenter.x, windowCenter.y);
 	}
 }
+
+
+void _KbMs::keyPressed(_GameManager* m)
+{
+	switch (wparam)
+	{
+	case VK_RETURN:
+		if (m->currentState == m->LANDING)
+		{
+			m->currentState = m->MAIN_MENU;
+			m->currentScreen = m->mainMenu;
+		}
+		else if (m->currentState == m->PAUSED_GAME)
+		{
+			exit(0);
+		}
+
+
+		break;
+
+	case 0x4E:
+		if (m->currentState == m->MAIN_MENU)
+		{
+			m->currentState = m->IN_GAME;
+			m->currentScreen = m->gameBG;
+		}
+
+		break;
+
+	case 0x48:
+		if (m->currentState == m->MAIN_MENU)
+		{
+			m->currentState = m->HOW_TO_PLAY;
+			m->currentScreen = m->howToPlay;
+		}
+
+		break;
+
+	case 0x45:
+		if (m->currentState == m->MAIN_MENU)
+		{
+			exit(0);
+		}
+
+		break;
+
+	case VK_ESCAPE:
+		if (m->currentState == m->LANDING)
+		{
+			exit(0);
+		}
+		else if (m->currentState == m->MAIN_MENU)
+		{
+			m->currentState = m->LANDING;
+			m->currentScreen = m->titlePage;
+		}
+		else if (m->currentState == m->HOW_TO_PLAY)
+		{
+			m->currentState = m->MAIN_MENU;
+			m->currentScreen = m->mainMenu;
+		}
+		else if (m->currentState == m->IN_GAME)
+		{
+			m->currentState = m->PAUSED_GAME;
+			m->currentScreen = m->paused;
+		}
+		else if (m->currentState == m->PAUSED_GAME)
+		{
+			m->currentState = m->IN_GAME;
+			m->currentScreen = m->gameBG;
+		}
+
+		break;
+	}
+}

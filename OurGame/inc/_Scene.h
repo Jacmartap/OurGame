@@ -11,9 +11,9 @@
 #include <_LightSetup.h>
 #include <_Enemy.h>
 #include <_Player.h>
+#include <_GameManager.h>
+#include <_Quad.h>
 #include <chrono>
-
-#define numEnms 5
 
 class _Scene
 {
@@ -21,22 +21,14 @@ class _Scene
         _Scene();
        virtual ~_Scene();
 
+       _GameManager* GM = new _GameManager();
+
        _Model* myMdl = new _Model();
        _KbMs* myKbMs = new _KbMs();
-       _SkyBox* mySky = new _SkyBox();
        _Camera* myCam = new _Camera();
        _PRLX* myPRLX = new _PRLX();
        _ModelLoader* my3DModel = new _ModelLoader();
        _LightSetup* myLight = new _LightSetup();
-       _Player* myPlayer = new _Player();           // With Multiple Actions
-
-       _Enemy myEnms[numEnms];
-
-       _Model* floor = new _Model(0.0, -3.1, -9.0, 10.0, 3.0, 10.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0);         // Creating and placing objects
-                                                                                                                //
-       _Model* crate1 = new _Model(0.0, 1.0, -5.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0);           //
-       _Model* crate2 = new _Model(-5.0, 1.0, -12.0, 1.0, 1.0, 1.0, 0.0, 45.0, 0.0, 1.0, 1.0, 1.0, 1.0);        //
-       _Model* crate3 = new _Model(5.0, 1.0, -12.0, 1.0, 1.0, 1.0, 0.0, -45.0, 0.0, 1.0, 1.0, 1.0, 1.0);        //
 
        float dimX;
        float dimY;
@@ -49,6 +41,9 @@ class _Scene
            UINT	uMsg,			// Message For This Window
            WPARAM wParam,		// Additional Message Information
            LPARAM lParam);		// Additional Message Information
+
+       void mouseMapping(int x, int y);
+       vec3 mouse;
 
     static float deltaT;
 

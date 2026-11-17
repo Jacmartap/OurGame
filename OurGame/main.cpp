@@ -34,7 +34,7 @@ void KillGLWindow()					    // Properly Kill The Window
 	if (fullscreen)						// Are We In Fullscreen Mode?
 	{
 		ChangeDisplaySettings(NULL, 0);	// If So Switch Back To The Desktop
-		ShowCursor(FALSE);				// Show Mouse Pointer
+		ShowCursor(TRUE);				// Show Mouse Pointer
 	}
 
 	if (hRC)							// Do We Have A Rendering Context?
@@ -126,7 +126,7 @@ BOOL CreateGLWindow(const char* title, int width, int height, int bits, bool ful
 
 		dwExStyle = WS_EX_APPWINDOW;				            // Window Extended Style
 		dwStyle = WS_POPUP;			  		                // must handle Gsync situations: Windows Style
-		ShowCursor(FALSE);					                // Hide Mouse Pointer
+		ShowCursor(TRUE);				                // Hide Mouse Pointer
 	}
 	else
 	{
@@ -351,7 +351,7 @@ int WINAPI WinMain(
 			// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
 			if (!active || keys[VK_ESCAPE])	// Active?  Was There A Quit Received?
 			{
-				done = TRUE;		        // ESC or DrawGLScene Signalled A Quit
+				//done = TRUE;		        // ESC or DrawGLScene Signalled A Quit
 			}
 			else				        // Not Time To Quit, Update Screen
 			{

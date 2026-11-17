@@ -6,6 +6,7 @@
 #include <_Camera.h>
 #include <_PRLX.h>
 #include <_Player.h>
+#include <_GameManager.h>
 
 class _KbMs
 {
@@ -19,6 +20,7 @@ public:
 	void keyPressed(_PRLX*);
 	void keyPressed(_Player*, _Camera*, float);   // Altered one last time - Jacob
 	void keyPressed(_Camera* cm, float deltaT);
+	void keyPressed(_GameManager* m);			  // Key inputs for menu - Jacob
 	void keyUp();
 
 	void mouseEventDown(_Model*, double, double);

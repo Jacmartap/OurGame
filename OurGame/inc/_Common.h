@@ -15,9 +15,9 @@
 #define GLEW_STATIC
 
 typedef struct {
-	float x;
-	float y;
-	float z;
+	GLdouble x;
+	GLdouble y;
+	GLdouble z;
 }vec3;
 
 typedef struct {
