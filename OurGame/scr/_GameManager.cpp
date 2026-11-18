@@ -200,6 +200,8 @@ void _GameManager::doGameplay(float deltaT)
 {
     if (gameActive == true)
     {
+        ShowCursor(FALSE);
+
         mySky->drawSkyBox();
 
         glPushMatrix();                         // Start grouping matrix
@@ -213,7 +215,7 @@ void _GameManager::doGameplay(float deltaT)
         crate3->drawModel();
         glPopMatrix();
 
-        /*                                     Ignoring the zombies just for now - Jacob
+        //Ignoring the zombies just for now - Jacob
         for (int i = 0; i < numEnms; i++)
         {
             glPushMatrix();
@@ -221,7 +223,6 @@ void _GameManager::doGameplay(float deltaT)
             myEnms[i].drawEnms(deltaT);
             glPopMatrix();
         }
-        */
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////

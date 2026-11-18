@@ -4,7 +4,7 @@
 #include <_Anim3D.h>
 #include <_TxtLoader.h>
 
-#define numActions 5
+#define numActions 4
 
 class _Enemy
 {

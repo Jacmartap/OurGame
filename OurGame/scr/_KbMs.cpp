@@ -404,7 +404,6 @@ void _KbMs::mouseMove(_Camera* cm, double x, double y)   // The new version of m
 	}
 }
 
-
 void _KbMs::keyPressed(_GameManager* m)
 {
 	switch (wparam)
