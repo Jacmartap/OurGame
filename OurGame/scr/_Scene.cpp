@@ -32,7 +32,7 @@
         GM->mySky->myTex[1].loadTexture("images/pz.png"); // Back
         GM->mySky->myTex[2].loadTexture("images/py.png"); // Top
         GM->mySky->myTex[3].loadTexture("images/ny.png"); // Bottom
-        GM->mySky->myTex[4].loadTexture("images/nx.png"); // Left
+        GM->mySky->myTex[4].loadTexture("images/nxQ.png"); // Left
         GM->mySky->myTex[5].loadTexture("images/px.png"); // Right
 
         myCam->camInit();
@@ -62,6 +62,10 @@
     
     
         myLight->setLight(GL_LIGHT0);
+
+        gameMusic->initSnds();
+
+        gameMusic->playMusic("sounds/Dead Wrong - Jeremy Blake.mp3");
 
         return TRUE;
     }

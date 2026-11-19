@@ -173,6 +173,7 @@
     <ClCompile Include="scr\_Quad.cpp" />
     <ClCompile Include="scr\_Scene.cpp" />
     <ClCompile Include="scr\_SkyBox.cpp" />
+    <ClCompile Include="scr\_Sounds.cpp" />
     <ClCompile Include="scr\_TxtLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +191,7 @@
     <ClInclude Include="inc\_Quad.h" />
     <ClInclude Include="inc\_Scene.h" />
     <ClInclude Include="inc\_SkyBox.h" />
+    <ClInclude Include="inc\_Sounds.h" />
     <ClInclude Include="inc\_TxtLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

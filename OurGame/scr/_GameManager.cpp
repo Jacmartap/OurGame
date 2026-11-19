@@ -150,6 +150,13 @@ void _GameManager::update()
         }
     }
 
+    for (int i = 0; i < buttons.size();i++) {
+        if (mouseClicked && buttonColliding(i))
+        {
+            menuSounds->playSnd("sounds/Click.mp3");
+        }
+    }
+
     switch (currentState)
     {   
         case LANDING:

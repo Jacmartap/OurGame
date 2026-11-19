@@ -239,6 +239,7 @@ void _KbMs::mouseEventDown(_Player* mdl, double x, double y)		// Player mouse co
 	case MK_LBUTTON:
 		if (!mdl->isActionActive)					// If no active animation, then player punch animation
 		{
+			mdl->playerSounds->playSnd("sounds/Meat Punch.mp3");
 			mdl->triggerAction(mdl->PUNCH, 0.75f);	// Takes time input, currently 0.8f
 		}
 		break;
@@ -246,6 +247,7 @@ void _KbMs::mouseEventDown(_Player* mdl, double x, double y)		// Player mouse co
 	case MK_RBUTTON:
 		if (!mdl->isActionActive)
 		{
+			mdl->playerSounds->playSnd("sounds/Wood Hit Metal Crash.mp3");
 			mdl->triggerAction(mdl->DEFEAT, 1.85f);
 		}
 		break;
@@ -403,6 +405,7 @@ void _KbMs::mouseMove(_Camera* cm, double x, double y)   // The new version of m
 		SetCursorPos(windowCenter.x, windowCenter.y);
 	}
 }
+
 
 void _KbMs::keyPressed(_GameManager* m)
 {

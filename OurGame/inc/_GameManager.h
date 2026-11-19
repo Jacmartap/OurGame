@@ -7,6 +7,7 @@
 #include <_Model.h>
 #include <_Quad.h>
 #include <_SkyBox.h>
+#include <_Sounds.h>
 #include <vector>
 
 #define numEnms 5
@@ -33,6 +34,8 @@ class _GameManager
         _Model* crate3 = new _Model(5.0, 1.0, -12.0, 1.0, 1.0, 1.0, 0.0, -45.0, 0.0, 1.0, 1.0, 1.0, 1.0);        //
 
         _SkyBox* mySky = new _SkyBox();
+
+        _Sounds* menuSounds = new _Sounds();
 
         void initMenu();
         void activateMenu(float, float, float);

@@ -2,6 +2,7 @@
 #include <_Common.h>
 #include <_TxtLoader.h>
 #include <_Anim3D.h>
+#include <_Sounds.h>
 
 class _Player
 {
@@ -34,6 +35,7 @@ public:
 	_TxtLoader myTex[4];
 	_TxtLoader myExoTex[4];
 
+	_Sounds* playerSounds = new _Sounds();
 
 	vec3 pos;
 	vec3 rot;   // Tracks rotation - Jacob
