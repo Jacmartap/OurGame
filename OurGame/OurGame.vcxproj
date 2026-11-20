@@ -162,6 +162,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="scr\_Anim3D.cpp" />
     <ClCompile Include="scr\_Camera.cpp" />
+    <ClCompile Include="scr\_Collision.cpp" />
     <ClCompile Include="scr\_Enemy.cpp" />
     <ClCompile Include="scr\_GameManager.cpp" />
     <ClCompile Include="scr\_KbMs.cpp" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <ClInclude Include="inc\_Anim3D.h" />
     <ClInclude Include="inc\_Camera.h" />
+    <ClInclude Include="inc\_Collision.h" />
     <ClInclude Include="inc\_Common.h" />
     <ClInclude Include="inc\_Enemy.h" />
     <ClInclude Include="inc\_GameManager.h" />

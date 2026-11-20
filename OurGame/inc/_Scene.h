@@ -12,6 +12,7 @@
 #include <_Enemy.h>
 #include <_Player.h>
 #include <_GameManager.h>
+#include <_Collision.h>
 #include <chrono>
 
 #define numEnms 3
@@ -31,6 +32,7 @@ class _Scene
        _ModelLoader* my3DModel = new _ModelLoader();
        _LightSetup* myLight = new _LightSetup();
        _Sounds* gameMusic = new _Sounds();
+       _Collision* myCollision = new _Collision();
 
        float dimX;
        float dimY;
