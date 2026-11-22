@@ -42,12 +42,30 @@
         GM->exoMan->initPlayer("models/Player/Player_Punch.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", GM->exoMan->PUNCH);
         GM->exoMan->initPlayer("models/Player/Player_Defeat.fbx", "models/Player/BODY_Diffuse.png", "models/Player/EXO_diffuse.png", GM->exoMan->DEFEAT);
 
-        GM->floor->initModel("images/floor.jpg");
-        GM->crate1->initModel("images/crate.png");
-        GM->crate2->initModel("images/crate.png");
-        GM->crate3->initModel("images/crate.png");
+        GM->lv1floor->initModel("images/floor.jpg");
+        GM->lv1crate1->initModel("images/crate.png");
+        GM->lv1crate2->initModel("images/crate.png");
+        GM->lv1crate3->initModel("images/crate.png");
+
+        GM->lv2floor->initModel("images/floor.jpg");
+        GM->lv2wall1->initModel("images/wall.jpg");
+        GM->lv2wall2->initModel("images/wall.jpg");
+        GM->lv2wall3->initModel("images/wall.jpg");
+        GM->lv2crate1->initModel("images/crate.png");
+        GM->lv2crate2->initModel("images/crate.png");
+        GM->lv2crate3->initModel("images/crate.png");
+
+        GM->lv3floor->initModel("images/floor.jpg");
+        GM->lv3wall1->initModel("images/wall.jpg");
+        GM->lv3wall2->initModel("images/wall.jpg");
+        GM->lv3wall3->initModel("images/wall.jpg");
+        GM->lv3crate1->initModel("images/crate.png");
+        GM->lv3crate2->initModel("images/crate.png");
+        GM->lv3crate3->initModel("images/crate.png");
+        GM->lv3crate4->initModel("images/crate.png");
+        GM->lv3crate5->initModel("images/crate.png");
     
-                                           //Ignoring the zombies just for now - Jacob
+         /*                                  //Ignoring the zombies just for now - Jacob
         for (int i = 0; i < numEnms; i++)
         {
             GM->myEnms[i].initEnms("models/Zombie/Zombie_Idle.fbx", "models/Zombie/BODY_Diffuse.png", GM->myEnms[i].IDLE);
@@ -59,7 +77,7 @@
             //myEnms[i].actionTrigger = (i % 4);
             GM->myEnms[i].actionTrigger = (2);
         }
-    
+    */
     
         myLight->setLight(GL_LIGHT0);
 

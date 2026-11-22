@@ -23,6 +23,7 @@ bool _Collision::isRadialCollion(vec3 p1, vec3 p2, float r1, float r2, float thr
 
 bool _Collision::isCubicCollision(_Player* p, _Model* c)
 {
+    
     float minX1 = p->pos.x - 0.17;
     float minY1 = p->pos.y;
     float minZ1 = p->pos.z - 0.12;
@@ -36,8 +37,8 @@ bool _Collision::isCubicCollision(_Player* p, _Model* c)
     float minZ2 = c->pos.z - c->scale.z;
 
     float maxX2 = c->pos.x + c->scale.x;
-    float maxY2 = c->pos.y + c->scale.y;
-    float maxZ2 = c->pos.z + c->scale.z;
+    float maxY2 = c->pos.x + c->scale.y;
+    float maxZ2 = c->pos.x + c->scale.z;
 
     return ((maxX1 >= minX2 && maxX2 >= minX1) && (maxY1 >= minY2 && maxY2 >= minY1) && (maxZ1 >= minZ2 && maxZ2 >= minZ1));
 }

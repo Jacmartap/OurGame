@@ -70,7 +70,7 @@ void _GameManager::initMenu()
     
     pausePopup->initQuad("images/PausePop_Up.png");
 
-    gameBgScreen->initPRLX("images/Bg.png");
+    //gameBgScreen->initPRLX("images/Bg.png");
 
     buttons[0].sprite.initQuad("images/ButtonStart.png");
     buttons[0].xPos = 0;
@@ -213,16 +213,49 @@ void _GameManager::doGameplay(float deltaT)
 
         glPushMatrix();                         // Start grouping matrix
         exoMan->drawPlayer(deltaT);
+        cout << exoMan->pos.x << "," << exoMan->pos.z << endl;
         glPopMatrix();                          // End grouping matrix
 
         glPushMatrix();
-        floor->drawModel();
-        crate1->drawModel();
-        crate2->drawModel();
-        crate3->drawModel();
+
+        if (levelID == 1)
+        {
+            lv1floor->drawModel();
+
+            lv1crate1->drawModel();
+            lv1crate2->drawModel();
+            lv1crate3->drawModel();
+        }
+        else if (levelID == 2)
+        {
+            lv2floor->drawModel();
+
+            lv2wall1->drawModel();
+            lv2wall2->drawModel();
+            lv2wall3->drawModel();
+
+            lv2crate1->drawModel();
+            lv2crate2->drawModel();
+            lv2crate3->drawModel();
+        }
+        else if (levelID == 3)
+        {
+            lv3floor->drawModel();
+
+            lv3wall1->drawModel();
+            lv3wall2->drawModel();
+            lv3wall3->drawModel();
+
+            lv3crate1->drawModel();
+            lv3crate2->drawModel();
+            lv3crate3->drawModel();
+            lv3crate4->drawModel();
+            lv3crate5->drawModel();
+        }
+        
         glPopMatrix();
 
-        //Ignoring the zombies just for now - Jacob
+        /*      //Ignoring the zombies just for now - Jacob
         for (int i = 0; i < numEnms; i++)
         {
             glPushMatrix();
@@ -230,6 +263,7 @@ void _GameManager::doGameplay(float deltaT)
             myEnms[i].drawEnms(deltaT);
             glPopMatrix();
         }
+        */
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////

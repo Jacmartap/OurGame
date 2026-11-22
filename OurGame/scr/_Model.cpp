@@ -13,7 +13,6 @@ _Model::_Model()
 	color.g = 1.0;
 	color.b = 1.0;
 	color.a = 1.0;
-
 }
 
 _Model::_Model(float posX, float posY, float posZ, float sclX, float sclY, float sclZ, float rotX, float rotY, float rotZ, float colR, float colG, float colB, float colA)
