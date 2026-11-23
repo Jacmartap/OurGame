@@ -14,7 +14,7 @@ _GameManager::~_GameManager()
 
 
 ////////////////////////////////// BUTTON RELATED LOGIC ////////////////////////////////////////
-void _GameManager::drawButtons(vector<button>& buttons)
+void _GameManager::drawButtons(vector<button>& buttons)                 // The new draw buttons function - Jacob
 {
     glDisable(GL_LIGHTING);
     for (int i = 0; i < menuButtons.size();i++)
@@ -34,7 +34,7 @@ void _GameManager::drawButtons(vector<button>& buttons)
 }
 
 
-bool _GameManager::buttonColliding(int index, vector<button>& buttons)
+bool _GameManager::buttonColliding(int index, vector<button>& buttons)  // The new button collision function - Jacob
 {
     float mouseDist = sqrt((mousePos.x - buttons[index].xPos * buttonScale.x) * (mousePos.x - buttons[index].xPos * buttonScale.x) + (mousePos.y - buttons[index].yPos * buttonScale.y) * (mousePos.y - buttons[index].yPos * buttonScale.y));
 
@@ -126,7 +126,7 @@ void _GameManager::initMenu()
 }
 
 
-void _GameManager::activateMenu(float x, float y, float deltaT)
+void _GameManager::activateMenu(float x, float y, float deltaT)     // Altered to use the new button collision - Jacob
 {
     glDisable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
@@ -167,7 +167,7 @@ void _GameManager::activateMenu(float x, float y, float deltaT)
 }
 
 
-void _GameManager::update()
+void _GameManager::update()     // Altered to use the new button collision - Jacob
 {
     for (int i = 0; i < menuButtons.size(); i++)
     {
@@ -276,7 +276,7 @@ void _GameManager::update()
 
 
 ////////////////////////////////// GAMEPLAY RELATED LOGIC ////////////////////////////////////
-void _GameManager::doGameplay(float deltaT)
+void _GameManager::doGameplay(float deltaT)     // Now displays the appropiate level selected in the select menu - Jacob
 {
     if (gameActive == true)
     {

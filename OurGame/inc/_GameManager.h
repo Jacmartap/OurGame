@@ -31,7 +31,7 @@ class _GameManager
 
         _SkyBox* mySky = new _SkyBox();
 
-        _Sounds* menuSounds = new _Sounds();
+        _Sounds* menuSounds = new _Sounds();    // Plays click sounds on every button - Jacob
 
         void initMenu();
         void activateMenu(float, float, float);
@@ -68,18 +68,18 @@ class _GameManager
         button lvl2Button;
         button lvl3Button;
 
-        vector<button> menuButtons = { startButton, helpButton, exitButton };
-        vector<button> selectButtons = { lvl1Button, lvl2Button, lvl3Button };
+        vector<button> menuButtons = { startButton, helpButton, exitButton };   // New Gamw, Help, Exit - Jacob
+        vector<button> selectButtons = { lvl1Button, lvl2Button, lvl3Button };  // 1, 2, 3 - Jacob
 
-        void drawButtons(vector<button>& buttons);
-        bool buttonColliding(int index, vector<button>& buttons);
+        void drawButtons(vector<button>& buttons);                      // Both of these now take in different button vectors so we can make as many as we want - Jacob
+        bool buttonColliding(int index, vector<button>& buttons);       // 
 
         vec2 buttonScale = { 1.0, 1.0 };
         vec2 mousePos;
 
         bool mouseClicked = false;
 
-        int levelID = 3;
+        int levelID = 3;    // Determines what objects to use and where to place them - Jacob
 
         ///////////////////////////////////////// Level 1 /////////////////////////////////////////////////
         _Model* lv1floor = new _Model(0.0, -3.1, -9.0, 10.0, 3.0, 10.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0);
