@@ -14,10 +14,10 @@ _GameManager::~_GameManager()
 
 
 ////////////////////////////////// BUTTON RELATED LOGIC ////////////////////////////////////////
-void _GameManager::drawButtons()
+void _GameManager::drawButtons(vector<button>& buttons)
 {
     glDisable(GL_LIGHTING);
-    for (int i = 0; i < buttons.size();i++)
+    for (int i = 0; i < menuButtons.size();i++)
     {
         if (buttons[i].screen == currentState) {
             buttons[i].sprite.pos.x = buttons[i].xPos * buttonScale.x;
@@ -34,7 +34,7 @@ void _GameManager::drawButtons()
 }
 
 
-bool _GameManager::buttonColliding(int index)
+bool _GameManager::buttonColliding(int index, vector<button>& buttons)
 {
     float mouseDist = sqrt((mousePos.x - buttons[index].xPos * buttonScale.x) * (mousePos.x - buttons[index].xPos * buttonScale.x) + (mousePos.y - buttons[index].yPos * buttonScale.y) * (mousePos.y - buttons[index].yPos * buttonScale.y));
 
@@ -66,37 +66,63 @@ void _GameManager::initMenu()
 {
     titleScreen->initPRLX("images/TitleScreen.png");
     menuScreen->initPRLX("images/MenuScreen.png");
+    levelSelectScreen->initPRLX("images/levelSelectScreen.png");
     howToPlayScreen->initPRLX("images/HowToPlayScreen.png");
     
     pausePopup->initQuad("images/PausePop_Up.png");
 
-    //gameBgScreen->initPRLX("images/Bg.png");
-
-    buttons[0].sprite.initQuad("images/ButtonStart.png");
-    buttons[0].xPos = 0;
-    buttons[0].yPos = 0.6;
-    buttons[0].zPos = 7.58002;
-    buttons[0].width = 0.5;
-    buttons[0].height = 0.25;
-    buttons[0].screen = mainMenu;
+    menuButtons[0].sprite.initQuad("images/ButtonStart.png");
+    menuButtons[0].xPos = 0;
+    menuButtons[0].yPos = 0.6;
+    menuButtons[0].zPos = 7.58002;
+    menuButtons[0].width = 0.5;
+    menuButtons[0].height = 0.25;
+    menuButtons[0].screen = mainMenu;
 
 
-    buttons[1].sprite.initQuad("images/ButtonHelp.png");
-    buttons[1].xPos = 0;
-    buttons[1].yPos = 0.0;
-    buttons[1].zPos = 7.58003;
-    buttons[1].width = 0.5;
-    buttons[1].height = 0.25;
-    buttons[1].screen = mainMenu;
+    menuButtons[1].sprite.initQuad("images/ButtonHelp.png");
+    menuButtons[1].xPos = 0;
+    menuButtons[1].yPos = 0.0;
+    menuButtons[1].zPos = 7.58003;
+    menuButtons[1].width = 0.5;
+    menuButtons[1].height = 0.25;
+    menuButtons[1].screen = mainMenu;
 
 
-    buttons[2].sprite.initQuad("images/ButtonExit.png");
-    buttons[2].xPos = 0;
-    buttons[2].yPos = -0.6;
-    buttons[2].zPos = 7.58004;
-    buttons[2].width = 0.5;
-    buttons[2].height = 0.25;
-    buttons[2].screen = mainMenu;
+    menuButtons[2].sprite.initQuad("images/ButtonExit.png");
+    menuButtons[2].xPos = 0;
+    menuButtons[2].yPos = -0.6;
+    menuButtons[2].zPos = 7.58004;
+    menuButtons[2].width = 0.5;
+    menuButtons[2].height = 0.25;
+    menuButtons[2].screen = mainMenu;
+
+
+    selectButtons[0].sprite.initQuad("images/lvl1Button.png");
+    selectButtons[0].xPos = -0.75;
+    selectButtons[0].yPos = 0.0;
+    selectButtons[0].zPos = 7.58002;
+    selectButtons[0].width = 0.25;
+    selectButtons[0].height = 0.25;
+    selectButtons[0].screen = levelSelect;
+
+
+    selectButtons[1].sprite.initQuad("images/lvl2Button.png");
+    selectButtons[1].xPos = 0;
+    selectButtons[1].yPos = 0.0;
+    selectButtons[1].zPos = 7.58003;
+    selectButtons[1].width = 0.25;
+    selectButtons[1].height = 0.25;
+    selectButtons[1].screen = levelSelect;
+
+
+    selectButtons[2].sprite.initQuad("images/lvl3Button.png");
+    selectButtons[2].xPos = 0.75;
+    selectButtons[2].yPos = 0.0;
+    selectButtons[2].zPos = 7.58004;
+    selectButtons[2].width = 0.25;
+    selectButtons[2].height = 0.25;
+    selectButtons[2].screen = levelSelect;
 }
 
 
@@ -113,8 +139,13 @@ void _GameManager::activateMenu(float x, float y, float deltaT)
 
         case MAIN_MENU:
             menuScreen->drawBkGrnd(x, y);
-            drawButtons();
+            drawButtons(menuButtons);
         break;
+
+        case LEVEL_SELECT:
+            levelSelectScreen->drawBkGrnd(x, y);
+            drawButtons(selectButtons);
+            break;
 
         case HOW_TO_PLAY:
             howToPlayScreen->drawBkGrnd(x, y);
@@ -138,20 +169,39 @@ void _GameManager::activateMenu(float x, float y, float deltaT)
 
 void _GameManager::update()
 {
-    for (int i = 0; i < buttons.size(); i++)
+    for (int i = 0; i < menuButtons.size(); i++)
     {
-        if (buttons[i].screen == currentState)
+        if (menuButtons[i].screen == currentState)
         {
-            buttonColliding(i);   // updates brightness every frame
+            buttonColliding(i, menuButtons);   // updates brightness every frame
         }
         else
         {
-            buttons[i].sprite.brightness = 1.0f;
+            menuButtons[i].sprite.brightness = 1.0f;
         }
     }
 
-    for (int i = 0; i < buttons.size();i++) {
-        if (mouseClicked && buttonColliding(i))
+    for (int i = 0; i < menuButtons.size();i++) {
+        if (mouseClicked && buttonColliding(i, menuButtons))
+        {
+            menuSounds->playSnd("sounds/Click.mp3");
+        }
+    }
+
+    for (int i = 0; i < selectButtons.size(); i++)
+    {
+        if (selectButtons[i].screen == currentState)
+        {
+            buttonColliding(i, selectButtons);   // updates brightness every frame
+        }
+        else
+        {
+            selectButtons[i].sprite.brightness = 1.0f;
+        }
+    }
+
+    for (int i = 0; i < selectButtons.size();i++) {
+        if (mouseClicked && buttonColliding(i, selectButtons))
         {
             menuSounds->playSnd("sounds/Click.mp3");
         }
@@ -171,22 +221,45 @@ void _GameManager::update()
             break;
 
         case MAIN_MENU:
-            if (mouseClicked && buttonColliding(0)) {
-                currentState = IN_GAME;
-                currentScreen = gameBG;
+            if (mouseClicked && buttonColliding(0, menuButtons))
+            {
+                currentState = LEVEL_SELECT;
+                currentScreen = levelSelect;
             }
-            else if (mouseClicked && buttonColliding(1))
+            else if (mouseClicked && buttonColliding(1, menuButtons))
             {
                 currentState = HOW_TO_PLAY;
                currentScreen = howToPlay;
             }
-            else if (mouseClicked && buttonColliding(2)) {
+            else if (mouseClicked && buttonColliding(2, menuButtons))
+            {
                 exit(0);
             }
 
             mouseClicked = false;
 
            break;
+
+        case LEVEL_SELECT:
+            if (mouseClicked && buttonColliding(0, selectButtons))
+            {
+                levelID = 1;
+                currentState = IN_GAME;
+            }
+            else if (mouseClicked && buttonColliding(1, selectButtons))
+            {
+                levelID = 2;
+                currentState = IN_GAME;
+            }
+            else if (mouseClicked && buttonColliding(2, selectButtons)) 
+            {
+                levelID = 3;
+                currentState = IN_GAME;
+            }
+
+            mouseClicked = false;
+
+            break;
 
         break;
 
@@ -213,57 +286,104 @@ void _GameManager::doGameplay(float deltaT)
 
         glPushMatrix();                         // Start grouping matrix
         exoMan->drawPlayer(deltaT);
-        cout << exoMan->pos.x << "," << exoMan->pos.z << endl;
         glPopMatrix();                          // End grouping matrix
 
-        glPushMatrix();
 
         if (levelID == 1)
         {
+            glPushMatrix();
             lv1floor->drawModel();
-
             lv1crate1->drawModel();
             lv1crate2->drawModel();
             lv1crate3->drawModel();
+            glPopMatrix();        
+
+            glPushMatrix();
+            glTranslatef(1.0, 0.0, -7.5);
+            myEnms[0].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(1.5, 0.0, -7.5);
+            myEnms[1].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(1.0, 0.0, -12.0);
+            myEnms[2].drawEnms(deltaT);
+            glPopMatrix();
         }
         else if (levelID == 2)
         {
+            glPushMatrix();
             lv2floor->drawModel();
-
             lv2wall1->drawModel();
             lv2wall2->drawModel();
             lv2wall3->drawModel();
-
             lv2crate1->drawModel();
             lv2crate2->drawModel();
             lv2crate3->drawModel();
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(10.0, 0.0, -1.0);
+            myEnms[0].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(-2.0, 0.0, -8.5);
+            myEnms[1].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(5.0, 0.0, -16.0);
+            myEnms[2].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(-7.0, 0.0, -16.0);
+            myEnms[2].drawEnms(deltaT);
+            glPopMatrix();
         }
         else if (levelID == 3)
         {
+            glPushMatrix();
             lv3floor->drawModel();
-
             lv3wall1->drawModel();
             lv3wall2->drawModel();
             lv3wall3->drawModel();
-
             lv3crate1->drawModel();
             lv3crate2->drawModel();
             lv3crate3->drawModel();
             lv3crate4->drawModel();
             lv3crate5->drawModel();
-        }
-        
-        glPopMatrix();
+            glPopMatrix();
 
-        /*      //Ignoring the zombies just for now - Jacob
-        for (int i = 0; i < numEnms; i++)
-        {
             glPushMatrix();
-            glTranslatef((i * 1.0), 0.0, 0.0);
-            myEnms[i].drawEnms(deltaT);
+            glTranslatef(-6.0, 0.0, -1.0);
+            myEnms[0].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(-3.0, 0.0, -3.0);
+            myEnms[1].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(0.0, 0.0, -14.0);
+            myEnms[2].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(-6.0, 0.0, -18.0);
+            myEnms[3].drawEnms(deltaT);
+            glPopMatrix();
+
+            glPushMatrix();
+            glTranslatef(9.5, 0.0, 1.0);
+            myEnms[4].drawEnms(deltaT);
             glPopMatrix();
         }
-        */
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////

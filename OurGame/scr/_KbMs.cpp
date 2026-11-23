@@ -425,31 +425,6 @@ void _KbMs::keyPressed(_GameManager* m)
 
 		break;
 
-	case 0x4E:
-		if (m->currentState == m->MAIN_MENU)
-		{
-			m->currentState = m->IN_GAME;
-			m->currentScreen = m->gameBG;
-		}
-
-		break;
-
-	case 0x48:
-		if (m->currentState == m->MAIN_MENU)
-		{
-			m->currentState = m->HOW_TO_PLAY;
-			m->currentScreen = m->howToPlay;
-		}
-
-		break;
-
-	case 0x45:
-		if (m->currentState == m->MAIN_MENU)
-		{
-			exit(0);
-		}
-
-		break;
 
 	case VK_ESCAPE:
 		if (m->currentState == m->LANDING)
@@ -462,6 +437,11 @@ void _KbMs::keyPressed(_GameManager* m)
 			m->currentScreen = m->titlePage;
 		}
 		else if (m->currentState == m->HOW_TO_PLAY)
+		{
+			m->currentState = m->MAIN_MENU;
+			m->currentScreen = m->mainMenu;
+		}
+		else if (m->currentState == m->LEVEL_SELECT)
 		{
 			m->currentState = m->MAIN_MENU;
 			m->currentScreen = m->mainMenu;

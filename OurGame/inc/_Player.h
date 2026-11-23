@@ -17,7 +17,7 @@ public:
 	// Action management - Kyle
 	// Note: triggerAction(action name, animation duration time) instead of using ActionTrigger now
 	// Surround it in a if (!mdl->isActionActive) to prevent other actions from interfering
-	//
+	
 	void triggerAction(int action, float duration);
 	void updateAction(float deltaT);
 	void setMovementAction(int action);

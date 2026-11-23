@@ -15,7 +15,7 @@
 #include <_Collision.h>
 #include <chrono>
 
-#define numEnms 3
+#define numEnms 5
 
 class _Scene
 {

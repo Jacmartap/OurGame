@@ -32,7 +32,7 @@
         GM->mySky->myTex[1].loadTexture("images/pz.png"); // Back
         GM->mySky->myTex[2].loadTexture("images/py.png"); // Top
         GM->mySky->myTex[3].loadTexture("images/ny.png"); // Bottom
-        GM->mySky->myTex[4].loadTexture("images/nxQ.png"); // Left
+        GM->mySky->myTex[4].loadTexture("images/nx.png"); // Left
         GM->mySky->myTex[5].loadTexture("images/px.png"); // Right
 
         myCam->camInit();
@@ -65,7 +65,7 @@
         GM->lv3crate4->initModel("images/crate.png");
         GM->lv3crate5->initModel("images/crate.png");
     
-         /*                                  //Ignoring the zombies just for now - Jacob
+                                          //Ignoring the zombies just for now - Jacob
         for (int i = 0; i < numEnms; i++)
         {
             GM->myEnms[i].initEnms("models/Zombie/Zombie_Idle.fbx", "models/Zombie/BODY_Diffuse.png", GM->myEnms[i].IDLE);
@@ -73,11 +73,8 @@
             GM->myEnms[i].initEnms("models/Zombie/Zombie_Attack.fbx", "models/Zombie/BODY_Diffuse.png", GM->myEnms[i].ATTACK);
             GM->myEnms[i].initEnms("models/Zombie/Zombie_Die.fbx", "models/Zombie/BODY_Diffuse.png", GM->myEnms[i].DIE);
 
-            GM->myEnms[i].pos.x = (rand() % 10) - 5;
-            //myEnms[i].actionTrigger = (i % 4);
             GM->myEnms[i].actionTrigger = (2);
         }
-    */
     
         myLight->setLight(GL_LIGHT0);
 

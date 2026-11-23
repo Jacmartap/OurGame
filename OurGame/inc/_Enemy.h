@@ -22,6 +22,7 @@ public:
 	enum EnemyState {IDLE, RUN, ATTACK, DIE};
 
 	vec3 pos;	// Position
+	vec3 rot;   // Rotate
 	vec3 eSize; // Size
 		
 	bool active = false;

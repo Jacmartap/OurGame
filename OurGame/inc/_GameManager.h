@@ -20,6 +20,7 @@ class _GameManager
 
         _PRLX* titleScreen = new _PRLX();
         _PRLX* menuScreen = new _PRLX();
+        _PRLX* levelSelectScreen = new _PRLX();
         _PRLX* howToPlayScreen = new _PRLX();
         _PRLX* gameBgScreen = new _PRLX();
         
@@ -39,8 +40,8 @@ class _GameManager
 
         bool gameActive = true;
 
-        enum {titlePage, mainMenu, howToPlay, paused, gameBG};
-        enum {LANDING, MAIN_MENU, HOW_TO_PLAY, PAUSED_GAME, IN_GAME};
+        enum {titlePage, mainMenu, levelSelect, howToPlay, paused, gameBG};
+        enum {LANDING, MAIN_MENU, LEVEL_SELECT, HOW_TO_PLAY, PAUSED_GAME, IN_GAME};
 
         int currentScreen;
         int currentState;
@@ -63,17 +64,22 @@ class _GameManager
         button helpButton;
         button exitButton;
 
-        vector<button> buttons = { startButton, helpButton, exitButton };
+        button lvl1Button;
+        button lvl2Button;
+        button lvl3Button;
 
-        void drawButtons();
-        bool buttonColliding(int index);
+        vector<button> menuButtons = { startButton, helpButton, exitButton };
+        vector<button> selectButtons = { lvl1Button, lvl2Button, lvl3Button };
+
+        void drawButtons(vector<button>& buttons);
+        bool buttonColliding(int index, vector<button>& buttons);
 
         vec2 buttonScale = { 1.0, 1.0 };
         vec2 mousePos;
 
         bool mouseClicked = false;
 
-        int levelID = 1;
+        int levelID = 3;
 
         ///////////////////////////////////////// Level 1 /////////////////////////////////////////////////
         _Model* lv1floor = new _Model(0.0, -3.1, -9.0, 10.0, 3.0, 10.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0);
